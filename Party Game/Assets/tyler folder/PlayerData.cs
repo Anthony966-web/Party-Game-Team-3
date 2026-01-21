@@ -29,7 +29,7 @@ public class PlayerData : ScriptableObject
 	[HideInInspector] public float runDeccelAmount; //Actual force (multiplied with speedDiff) applied to the player .
 	[Space(5)]
 	[Range(0f, 1)] public float accelInAir; //Multipliers applied to acceleration rate when airborne.
-	[Range(0f, 1)] public float deccelInAir;
+	[Range(0f, 5)] public float deccelInAir;
 	[Space(5)]
 	public bool doConserveMomentum = true;
 
