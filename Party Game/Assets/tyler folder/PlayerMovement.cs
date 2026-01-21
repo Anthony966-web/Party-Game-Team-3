@@ -179,7 +179,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
 		{
-			
 			OnJumpInput();
 		}
 
@@ -234,13 +233,9 @@ public class PlayerMovement : MonoBehaviour
                 LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
             }
 
-			if(LastOnGroundTime == Data.coyoteTime)
+			if(LastOnGroundTime >= Data.coyoteTime)
 			{
 				isGrounded = true;
-			}
-			else
-			{
-				isGrounded = false;
 			}
 
 			if (!Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping && !Jumped) //checks if set box overlaps with ground
@@ -278,8 +273,19 @@ public class PlayerMovement : MonoBehaviour
 			{
 				IsFastFalling = false;
 			}
-				//Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
-				LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+
+			//Momentum Conservation After Hitting The Ground
+			Vector2 groundcheck = new Vector2(_groundCheckPoint.position.x, _groundCheckPoint.position.y);
+            RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
+			if (groundhit)
+			{
+                RB.linearVelocityY = 0f;
+                Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
+            }
+
+
+            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+            LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
 		}
 		#endregion
 
@@ -318,6 +324,7 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetFloat("Idleing", 0f);
 				anim.SetFloat("Jump", 1f);
 				IsJumping = true;
+				isGrounded = false;
 				IsWallJumping = false;
 				_isJumpCut = false;
 				_isJumpFalling = false;
@@ -349,13 +356,13 @@ public class PlayerMovement : MonoBehaviour
 			anim.SetFloat("Running", 0f);
             anim.SetFloat("WallSliding", 1f);
 
+			isGrounded = false;
             IsFastSliding = false;
             IsSliding = true;
         }
 		else
 		{
             anim.SetFloat("WallSliding", 0f);
-
 
             IsSliding = false;
         }
@@ -366,6 +373,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("Running", 0f);
             anim.SetFloat("WallSliding", 1f);
 
+			isGrounded = false;
             IsFastSliding = true;
         }
         else
@@ -447,7 +455,10 @@ public class PlayerMovement : MonoBehaviour
 	//Methods which whandle input detected in Update()
     public void OnJumpInput()
 	{
-		LastPressedJumpTime = Data.jumpInputBufferTime;
+		if (isGrounded || isOnLeftWall || isOnRightWall)
+		{
+            LastPressedJumpTime = Data.jumpInputBufferTime;
+        }
 	}
 
 	public void OnJumpUpInput()
@@ -759,6 +770,7 @@ public class PlayerMovement : MonoBehaviour
 		Gizmos.color = Color.blue;
 		Gizmos.DrawWireCube(_frontWallCheckPoint.position, _wallCheckSize);
 		Gizmos.DrawWireCube(_backWallCheckPoint.position, _wallCheckSize);
+		
 	}
     #endregion
 }
