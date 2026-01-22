@@ -8,6 +8,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -171,22 +172,6 @@ public class PlayerMovement : MonoBehaviour
 		#endregion
 
 		#region INPUT HANDLER
-		_moveInput.x = Input.GetAxisRaw("Horizontal");
-		_moveInput.y = Input.GetAxisRaw("Vertical");
-
-		if (_moveInput.x != 0)
-			CheckDirectionToFace(_moveInput.x > 0);
-
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
-		{
-			OnJumpInput();
-		}
-
-		if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.J))
-		{
-			OnJumpUpInput();
-		}
-
         if (RB.linearVelocity.x > 0 && RB.linearVelocity.x < 6 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping || RB.linearVelocity.x < 0 && RB.linearVelocity.x > -6 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping)
 		{
 			anim.SetFloat("Walking", 1f);
@@ -452,9 +437,27 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region INPUT CALLBACKS
-	//Methods which whandle input detected in Update()
-    public void OnJumpInput()
+
+	public void Move(InputAction.CallbackContext ctx)
 	{
+
+		_moveInput.x = ctx.ReadValue<Vector2>().x;
+		_moveInput.y = ctx.ReadValue<Vector2>().y;
+
+        if (_moveInput.x != 0)
+			CheckDirectionToFace(_moveInput.x > 0);
+
+	}
+
+	//Methods which whandle input detected in Update()
+    public void OnJumpInput(InputAction.CallbackContext ctx)
+	{
+		if (ctx.canceled)
+		{
+			OnJumpUpInput();
+			return;
+		}
+
 		if (isGrounded || isOnLeftWall || isOnRightWall)
 		{
             LastPressedJumpTime = Data.jumpInputBufferTime;
