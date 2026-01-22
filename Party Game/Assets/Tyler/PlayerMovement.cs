@@ -268,6 +268,32 @@ public class PlayerMovement : MonoBehaviour
                 Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
             }
 
+            //Slam Into Wall Fix
+            Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
+			if (IsFacingRight) 
+			{
+                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
+                if (rightwallhit)
+                {
+                    //Debug.Log("wallhit");
+                    RB.linearVelocityX = 0f;
+                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+                }
+            }
+			else
+			{
+                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.left, 0.1f, _groundLayer);
+                if (rightwallhit)
+                {
+                    //Debug.Log("wallhit");
+                    RB.linearVelocityX = 0f;
+                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+                }
+            }
+
+			
 
             //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
             LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
@@ -600,8 +626,9 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Jumping", 1f);
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-		#endregion
-	}
+        Debug.Log("BUUUUG");
+        #endregion
+    }
 
     private void WallJump(int dir)
 	{

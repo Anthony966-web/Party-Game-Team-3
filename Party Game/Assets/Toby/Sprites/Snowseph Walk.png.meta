@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Snowseph Walk_0: 3837166967892697098
+      Snowseph Walk_1: 2558067799006363546
+      Snowseph Walk_2: 2625341680651318615
+      Snowseph Walk_3: -4871011212726224146
+      Snowseph Walk_4: 740564934969624323
+      Snowseph Walk_5: 3202702151984335523
+      Snowseph Walk_6: 6513500631928158310
+      Snowseph Walk_7: -6462153838938059927
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
