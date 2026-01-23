@@ -135,13 +135,20 @@ public class PlayerMovement : MonoBehaviour
             slopeSideAngle = 0.0f;
             isOnSlope = false;
         }
+
+		if (slopeSideAngle == 90)
+		{
+			isGrounded = false;
+			isOnSlope = false;
+			slopeSideAngle = 0;
+		}
     }
 
     private void slopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, _groundLayer);
 
-        if (hit)
+        if (hit && !isOnLeftWall || hit && !isOnRightWall)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
 
@@ -214,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
 			{
                 anim.SetFloat("Jump", 0f);
-				Jumped = false;
+                Jumped = false;
                 LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
             }
 
@@ -262,19 +269,24 @@ public class PlayerMovement : MonoBehaviour
 			//Momentum Conservation After Hitting The Ground
 			Vector2 groundcheck = new Vector2(_groundCheckPoint.position.x, _groundCheckPoint.position.y);
             RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
-			if (groundhit)
+			if (groundhit && !isOnLeftWall || groundhit && !isOnRightWall)
 			{
                 RB.linearVelocityY = 0f;
                 Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
             }
+			else
+			{
 
-            //Slam Into Wall Fix
-            Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
+			}
+
+				//Slam Into Wall Fix
+				Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
 			if (IsFacingRight) 
 			{
                 RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
-                if (rightwallhit)
+                if (rightwallhit && !isGrounded)
                 {
+					isGrounded = false;
                     //Debug.Log("wallhit");
                     RB.linearVelocityX = 0f;
                     Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
