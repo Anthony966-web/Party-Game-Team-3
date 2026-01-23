@@ -225,7 +225,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 54d5c7ab7f736914099ec67169f5bbdb, type: 2}
   slopeCheckDistance: 0.5
   _groundCheckPoint: {fileID: 2598455302236954055}
-  _groundCheckSize: {x: 0.75, y: 0.1}
+  _groundCheckSize: {x: 0.5, y: 0.1}
   _frontWallCheckPoint: {fileID: 4723720778801050217}
   _backWallCheckPoint: {fileID: 8113067607049727408}
   _wallCheckSize: {x: 0.17, y: 1.83}
