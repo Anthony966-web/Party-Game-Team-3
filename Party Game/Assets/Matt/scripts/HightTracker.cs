@@ -18,10 +18,8 @@ public class HightTracker : MonoBehaviour
 
     [Header("crowns")]
 // crowns for players
-    public Slider player1Crown;
-    public Slider player2Crown;
-    public Slider player3Crown;
-    public Slider player4Crown;
+    public Slider winnerCrown;
+    public Slider loserCrown;
 
     void Update()
     {
@@ -56,47 +54,12 @@ public class HightTracker : MonoBehaviour
         // sets slider to hight in level for p4
         player4SliderHight.value = ph4;
 
+        // Create an array with each of the heights, then sort it biggest to smallest
+        float[] heights = new float[] { ph1, ph2, ph3, ph4 };
+        float[] orderedHeights = heights.OrderBy(h => -h).ToArray();
+
         // sets crowns to players hight on slider
-        player1Crown.value = ph1;
-        player2Crown.value = ph2;
-        player3Crown.value = ph3;
-        player4Crown.value = ph4;
-
-        // checks what player is currently winning
-        if (p1 > p2 && p1 > p3 && p1 > p4)
-        {
-            GameObject.Find("player 1 crown").SetActive(true);
-        }
-        else
-        {
-            GameObject.Find("player 1 crown").SetActive(false);
-        }
-
-        if (p2 > p1 && p2 > p3 && p2 > p4)
-        {
-            GameObject.Find("player 2 crown").SetActive(true);
-        }
-        else
-        {
-            GameObject.Find("player 2 crown").SetActive(false);
-        }
-
-        if (p3 > p1 && p3 > p2 && p3 > p4)
-        {
-            GameObject.Find("player 3 crown").SetActive(true);
-        }
-        else
-        {
-            GameObject.Find("player 3 crown").SetActive(false);
-        }
-
-        if (p4 > p1 && p4 > p2 && p4 > p3)
-        {
-            GameObject.Find("player 4 crown").SetActive(true);
-        }
-        else
-        {
-            GameObject.Find("player 4 crown").SetActive(false);
-        }
+        winnerCrown.value = orderedHeights[0]; // 0 is first in array.
+        loserCrown.value = orderedHeights[^1]; // ^1 is last in array.
     }
 }
