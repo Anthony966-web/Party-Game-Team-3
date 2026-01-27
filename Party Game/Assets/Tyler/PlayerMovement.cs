@@ -475,9 +475,13 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Move(InputAction.CallbackContext ctx)
 	{
-
 		_moveInput.x = ctx.ReadValue<Vector2>().x;
 		_moveInput.y = ctx.ReadValue<Vector2>().y;
+
+		if (Mathf.Abs(_moveInput.y) > -0.75f)
+		{
+			_moveInput.y = 0;
+		}
 
         if (_moveInput.x != 0)
 			CheckDirectionToFace(_moveInput.x > 0);
