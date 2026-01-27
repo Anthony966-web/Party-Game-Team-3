@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ladder
+  - ItemPickup
   layers:
   - Default
   - TransparentFX

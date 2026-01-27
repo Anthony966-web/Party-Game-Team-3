@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     #region COMPONENTS
     public Rigidbody2D RB { get; private set; }
     public Animator anim { get; private set; }
+	public Transform SpritesTrans;
+	public Transform Checks;
     #endregion
 
     #region STATE PARAMETERS
@@ -269,24 +271,19 @@ public class PlayerMovement : MonoBehaviour
 			//Momentum Conservation After Hitting The Ground
 			Vector2 groundcheck = new Vector2(_groundCheckPoint.position.x, _groundCheckPoint.position.y);
             RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
-			if (groundhit && !isOnLeftWall || groundhit && !isOnRightWall)
+			if (groundhit)
 			{
                 RB.linearVelocityY = 0f;
                 Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
             }
-			else
-			{
 
-			}
-
-				//Slam Into Wall Fix
-				Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
+			//Slam Into Wall Fix
+			Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
 			if (IsFacingRight) 
 			{
                 RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
-                if (rightwallhit && !isGrounded)
+                if (rightwallhit)
                 {
-					isGrounded = false;
                     //Debug.Log("wallhit");
                     RB.linearVelocityX = 0f;
                     Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
@@ -608,11 +605,12 @@ public class PlayerMovement : MonoBehaviour
 		if (CanTurn())
 		{
             //stores scale and flips the player along the x axis, 
-            Vector3 scale = transform.localScale;
+            Vector3 scale = SpritesTrans.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+            SpritesTrans.localScale = scale;
+			Checks.localScale = scale;
 
-            IsFacingRight = !IsFacingRight;
+			IsFacingRight = !IsFacingRight;
         }
 	}
     #endregion
