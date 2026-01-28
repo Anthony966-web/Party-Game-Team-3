@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetFloat("Jump", 0f);
 			}
 
-            //Right Wall Check
+            //Front Wall Check
             if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
 			{
                 anim.SetFloat("Jump", 0f);
@@ -250,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
                 isOnRightWall = false;
             }
 
-			//Left Wall Check
+			//Back Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
 			{
 				anim.SetFloat("Jump", 0f);
@@ -593,9 +593,17 @@ public class PlayerMovement : MonoBehaviour
 		//Calculate force along x-axis to apply to thr player
 
 		float movement = speedDif * accelRate;
+        float slidemovement = Data.moveSpeedOnSlide;
 
-		//Convert this to a vector and apply to rigidbody
-		RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        //Convert this to a vector and apply to rigidbody
+        if (!IsSliding || !IsFastSliding)
+		{
+            RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        }
+		else
+		{
+            RB.AddForce(slidemovement * Vector2.right, ForceMode2D.Force);
+        }
 
 		/*
 		 * For those interested here is what AddForce() will do
@@ -611,7 +619,7 @@ public class PlayerMovement : MonoBehaviour
             //stores scale and flips the player along the x axis, 
             Vector3 scale = SpritesTrans.localScale;
             scale.x *= -1;
-            SpritesTrans.localScale = scale;
+			SpritesTrans.localScale = scale;
 			Checks.localScale = scale;
 
 			IsFacingRight = !IsFacingRight;
@@ -783,7 +791,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public bool CanTurn()
 	{
-		if (isGrounded || LastOnWallTime < 0f || LastOnWallTime == Data.coyoteTime)
+		if (isGrounded || LastOnWallTime < -0.75f || LastOnWallTime == Data.coyoteTime && !IsSliding || LastOnWallTime == Data.coyoteTime && !IsFastSliding)
 		{
 			return true;
 		}
