@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     #region COMPONENTS
     public Rigidbody2D RB { get; private set; }
     public Animator anim { get; private set; }
+	public Transform SpritesTrans;
+	public Transform Checks;
     #endregion
 
     #region STATE PARAMETERS
@@ -135,13 +137,20 @@ public class PlayerMovement : MonoBehaviour
             slopeSideAngle = 0.0f;
             isOnSlope = false;
         }
+
+		if (slopeSideAngle == 90)
+		{
+			isGrounded = false;
+			isOnSlope = false;
+			slopeSideAngle = 0;
+		}
     }
 
     private void slopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, _groundLayer);
 
-        if (hit)
+        if (hit && !isOnLeftWall || hit && !isOnRightWall)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
 
@@ -214,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
 			{
                 anim.SetFloat("Jump", 0f);
-				Jumped = false;
+                Jumped = false;
                 LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
             }
 
@@ -268,6 +277,32 @@ public class PlayerMovement : MonoBehaviour
                 Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
             }
 
+			//Slam Into Wall Fix
+			Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
+			if (IsFacingRight) 
+			{
+                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
+                if (rightwallhit)
+                {
+                    //Debug.Log("wallhit");
+                    RB.linearVelocityX = 0f;
+                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+                }
+            }
+			else
+			{
+                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.left, 0.1f, _groundLayer);
+                if (rightwallhit)
+                {
+                    //Debug.Log("wallhit");
+                    RB.linearVelocityX = 0f;
+                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+                }
+            }
+
+			
 
             //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
             LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
@@ -440,9 +475,13 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Move(InputAction.CallbackContext ctx)
 	{
-
 		_moveInput.x = ctx.ReadValue<Vector2>().x;
 		_moveInput.y = ctx.ReadValue<Vector2>().y;
+
+		if (Mathf.Abs(_moveInput.y) > -0.75f)
+		{
+			_moveInput.y = 0;
+		}
 
         if (_moveInput.x != 0)
 			CheckDirectionToFace(_moveInput.x > 0);
@@ -570,11 +609,12 @@ public class PlayerMovement : MonoBehaviour
 		if (CanTurn())
 		{
             //stores scale and flips the player along the x axis, 
-            Vector3 scale = transform.localScale;
+            Vector3 scale = SpritesTrans.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+            SpritesTrans.localScale = scale;
+			Checks.localScale = scale;
 
-            IsFacingRight = !IsFacingRight;
+			IsFacingRight = !IsFacingRight;
         }
 	}
     #endregion
@@ -600,8 +640,9 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Jumping", 1f);
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-		#endregion
-	}
+        Debug.Log("BUUUUG");
+        #endregion
+    }
 
     private void WallJump(int dir)
 	{

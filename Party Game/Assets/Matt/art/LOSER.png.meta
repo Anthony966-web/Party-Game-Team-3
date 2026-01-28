@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: a6a71d514bb489e4ebb4de5027fcfe4a
+guid: 77bdf4b189ee0a145afd428470db779b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 667811088289746610
-    second: Snowseph_0
+      213: 8001902814861139756
+    second: LOSER_0
+  - first:
+      213: 485718149519343749
+    second: LOSER_1
+  - first:
+      213: 5088387306444535842
+    second: LOSER_2
+  - first:
+      213: 5295629311253179997
+    second: LOSER_3
+  - first:
+      213: 9115237396376382952
+    second: LOSER_4
+  - first:
+      213: 5291831234555722265
+    second: LOSER_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -74,7 +89,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -126,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snowseph_0
+      name: LOSER_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 60
+        width: 500
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2bec39685aa844900800000000000000
-      internalID: 667811088289746610
+      spriteID: c2f1ff6d6387c0f60800000000000000
+      internalID: 8001902814861139756
       vertices: []
       indices: 
       edges: []
@@ -151,7 +166,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1d172f6ab1091204380f711963adaef4
+    spriteID: a3ff76c850ee17f4f9ef9bb6def7e9b6
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +176,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Snowseph_0: 667811088289746610
+      LOSER_0: 8001902814861139756
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -150,10 +150,10 @@ TextureImporter:
       name: Snowseph Run_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 119
-        width: 19
-        height: 49
+        x: 0
+        y: 120
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +172,10 @@ TextureImporter:
       name: Snowseph Run_1
       rect:
         serializedVersion: 2
-        x: 75
-        y: 121
-        width: 36
-        height: 47
+        x: 60
+        y: 120
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Snowseph Run_2
       rect:
         serializedVersion: 2
-        x: 127
-        y: 133
-        width: 50
-        height: 35
+        x: 120
+        y: 120
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: Snowseph Run_3
       rect:
         serializedVersion: 2
-        x: 15
-        y: 61
-        width: 36
-        height: 47
+        x: 0
+        y: 60
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,10 +238,10 @@ TextureImporter:
       name: Snowseph Run_4
       rect:
         serializedVersion: 2
-        x: 82
-        y: 59
-        width: 19
-        height: 49
+        x: 60
+        y: 60
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: Snowseph Run_5
       rect:
         serializedVersion: 2
-        x: 138
-        y: 62
-        width: 29
-        height: 46
+        x: 120
+        y: 60
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,10 +282,10 @@ TextureImporter:
       name: Snowseph Run_6
       rect:
         serializedVersion: 2
-        x: 10
-        y: 12
-        width: 40
-        height: 36
+        x: 0
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: Snowseph Run_7
       rect:
         serializedVersion: 2
-        x: 78
-        y: 2
-        width: 29
-        height: 46
+        x: 60
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e4d38365f8b7c941bcef238e60c5d5f
     internalID: 0
     vertices: []
     indices: 
