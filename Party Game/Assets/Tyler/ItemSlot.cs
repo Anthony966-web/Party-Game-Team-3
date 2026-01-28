@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ItemSlot : MonoBehaviour
 {
+    //private Image CurrentItem;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +14,10 @@ public class ItemSlot : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ItemRoulete()
+    {
+
     }
 }
