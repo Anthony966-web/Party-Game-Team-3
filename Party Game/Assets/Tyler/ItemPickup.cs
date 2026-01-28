@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+    private bool collected;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +14,10 @@ public class ItemPickup : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnCollision2D(Collision2D col)
+    {
+
     }
 }
