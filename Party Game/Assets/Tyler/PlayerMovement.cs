@@ -95,12 +95,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Layers & Tags")]
 	[SerializeField] public LayerMask _groundLayer;
     [SerializeField] private LayerMask DeathLayer;
-    #endregion
+	#endregion
 
+	[SerializeField] private Animator animator;
     private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
-		anim = GetComponent<Animator>();
+		anim = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -213,21 +214,30 @@ public class PlayerMovement : MonoBehaviour
 		{
 			IsWalking = false;
 		}
-        #endregion
+
+		if (Mathf.Abs(RB.linearVelocityX) > 0.01f)
+		{
+			animator.SetBool("isRunning", true);
+		}
+		else
+		{
+            animator.SetBool("isRunning", false);
+        }
+		#endregion
 
 
-        #region COLLISION CHECKS
-        if (!IsJumping)
+		#region COLLISION CHECKS
+		if (!IsJumping)
 		{
 			//Ground Check
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
 			{
-                anim.SetFloat("Jump", 0f);
-                Jumped = false;
-                LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
-            }
+				anim.SetFloat("Jump", 0f);
+				Jumped = false;
+				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+			}
 
-			if(LastOnGroundTime >= Data.coyoteTime)
+			if (LastOnGroundTime >= Data.coyoteTime)
 			{
 				isGrounded = true;
 			}
@@ -237,18 +247,18 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetFloat("Jump", 0f);
 			}
 
-            //Front Wall Check
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+			//Front Wall Check
+			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
 			{
-                anim.SetFloat("Jump", 0f);
+				anim.SetFloat("Jump", 0f);
 				isOnRightWall = true;
 				isOnLeftWall = false;
-                LastOnWallRightTime = Data.coyoteTime;
+				LastOnWallRightTime = Data.coyoteTime;
 			}
 			else
 			{
-                isOnRightWall = false;
-            }
+				isOnRightWall = false;
+			}
 
 			//Back Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
@@ -260,8 +270,8 @@ public class PlayerMovement : MonoBehaviour
 			}
 			else
 			{
-                isOnLeftWall = false;
-            }
+				isOnLeftWall = false;
+			}
 
 			if (isGrounded)
 			{
@@ -270,42 +280,42 @@ public class PlayerMovement : MonoBehaviour
 
 			//Momentum Conservation After Hitting The Ground
 			Vector2 groundcheck = new Vector2(_groundCheckPoint.position.x, _groundCheckPoint.position.y);
-            RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
+			RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
 			if (groundhit)
 			{
-                RB.linearVelocityY = 0f;
-                Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
-            }
+				RB.linearVelocityY = 0f;
+				Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
+			}
 
 			//Slam Into Wall Fix
 			Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
-			if (IsFacingRight) 
+			if (IsFacingRight)
 			{
-                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
-                if (rightwallhit)
-                {
-                    //Debug.Log("wallhit");
-                    RB.linearVelocityX = 0f;
-                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
-                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
-                }
-            }
+				RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
+				if (rightwallhit)
+				{
+					//Debug.Log("wallhit");
+					RB.linearVelocityX = 0f;
+					Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+					LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+				}
+			}
 			else
 			{
-                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.left, 0.1f, _groundLayer);
-                if (rightwallhit)
-                {
-                    //Debug.Log("wallhit");
-                    RB.linearVelocityX = 0f;
-                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
-                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
-                }
-            }
+				RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.left, 0.1f, _groundLayer);
+				if (rightwallhit)
+				{
+					//Debug.Log("wallhit");
+					RB.linearVelocityX = 0f;
+					Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+					LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+				}
+			}
 
-			
 
-            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
-            LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+
+			//Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+			LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
 		}
 		#endregion
 
