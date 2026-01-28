@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0000d6a0bff56f4ab3aeaa1ed740ac1
+guid: 163f3b3ea2c20ab4aa17671ae20d279e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9012917843099916589
-    second: Snowseph Wall_0
+      213: 7572191000797363593
+    second: Gambler Wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snowseph Wall_0
+      name: Gambler Wall_0
       rect:
         serializedVersion: 2
         x: 23
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d6ef3469feabe280800000000000000
-      internalID: -9012917843099916589
+      spriteID: 98dbfe59893d51960800000000000000
+      internalID: 7572191000797363593
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Snowseph Wall_0: -9012917843099916589
+      Gambler Wall_0: 7572191000797363593
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

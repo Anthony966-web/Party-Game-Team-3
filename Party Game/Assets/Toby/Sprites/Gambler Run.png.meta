@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 72ad666874cce5c4283c5c871d5a661c
+guid: b6adfd73b12e63e40a238c854abc64cf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6647546862051021261
-    second: Snowseph Run_0
+      213: -7919677655672477409
+    second: Gambler Run_0
   - first:
-      213: -8212457679663987767
-    second: Snowseph Run_1
+      213: 7212006958292333810
+    second: Gambler Run_1
   - first:
-      213: -2247916010343336108
-    second: Snowseph Run_2
+      213: 8830848409239551207
+    second: Gambler Run_2
   - first:
-      213: -6920955184419365312
-    second: Snowseph Run_3
+      213: -496432121455528198
+    second: Gambler Run_3
   - first:
-      213: 7834104149818255241
-    second: Snowseph Run_4
+      213: -4388012763911586854
+    second: Gambler Run_4
   - first:
-      213: 7155870821369989118
-    second: Snowseph Run_5
+      213: -1331582391694568448
+    second: Gambler Run_5
   - first:
-      213: 6887546516415132512
-    second: Snowseph Run_6
+      213: 5042471825839221208
+    second: Gambler Run_6
   - first:
-      213: -4972136617910432365
-    second: Snowseph Run_7
+      213: 7167039269751588609
+    second: Gambler Run_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -147,13 +147,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snowseph Run_0
+      name: Gambler Run_0
       rect:
         serializedVersion: 2
         x: 22
         y: 119
-        width: 19
-        height: 49
+        width: 20
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 33eafa3695b2fb3a0800000000000000
-      internalID: -6647546862051021261
+      spriteID: f192b06e127a71290800000000000000
+      internalID: -7919677655672477409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Snowseph Run_1
+      name: Gambler Run_1
       rect:
         serializedVersion: 2
         x: 75
         y: 121
         width: 36
-        height: 47
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,107 +184,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c303b6704d770e80800000000000000
-      internalID: -8212457679663987767
+      spriteID: 2f4f8a22e12361460800000000000000
+      internalID: 7212006958292333810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Snowseph Run_2
+      name: Gambler Run_2
       rect:
         serializedVersion: 2
         x: 127
         y: 133
         width: 50
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 457729e6c4ccdc0e0800000000000000
-      internalID: -2247916010343336108
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Snowseph Run_3
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 61
-        width: 36
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04e1946bde3d3ff90800000000000000
-      internalID: -6920955184419365312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Snowseph Run_4
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 59
-        width: 19
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 987a457a73458bc60800000000000000
-      internalID: 7834104149818255241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Snowseph Run_5
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 62
-        width: 29
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef7475e3992ce4360800000000000000
-      internalID: 7155870821369989118
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Snowseph Run_6
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 12
-        width: 40
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -294,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06337ec901b759f50800000000000000
-      internalID: 6887546516415132512
+      spriteID: 7ecfb0227d97d8a70800000000000000
+      internalID: 8830848409239551207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Snowseph Run_7
+      name: Gambler Run_3
       rect:
         serializedVersion: 2
-        x: 78
-        y: 2
-        width: 29
-        height: 46
+        x: 15
+        y: 61
+        width: 36
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,8 +228,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39d8cbae61c6ffab0800000000000000
-      internalID: -4972136617910432365
+      spriteID: af6bc81ad915c19f0800000000000000
+      internalID: -496432121455528198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gambler Run_4
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 59
+        width: 20
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adb7b21d3a5aa13c0800000000000000
+      internalID: -4388012763911586854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gambler Run_5
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 62
+        width: 29
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00451e9aed4458de0800000000000000
+      internalID: -1331582391694568448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gambler Run_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 12
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9ef01d8657af540800000000000000
+      internalID: 5042471825839221208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gambler Run_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 2
+        width: 29
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10781d44e30767360800000000000000
+      internalID: 7167039269751588609
       vertices: []
       indices: 
       edges: []
@@ -336,14 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Snowseph Run_0: -6647546862051021261
-      Snowseph Run_1: -8212457679663987767
-      Snowseph Run_2: -2247916010343336108
-      Snowseph Run_3: -6920955184419365312
-      Snowseph Run_4: 7834104149818255241
-      Snowseph Run_5: 7155870821369989118
-      Snowseph Run_6: 6887546516415132512
-      Snowseph Run_7: -4972136617910432365
+      Gambler Run_0: -7919677655672477409
+      Gambler Run_1: 7212006958292333810
+      Gambler Run_2: 8830848409239551207
+      Gambler Run_3: -496432121455528198
+      Gambler Run_4: -4388012763911586854
+      Gambler Run_5: -1331582391694568448
+      Gambler Run_6: 5042471825839221208
+      Gambler Run_7: 7167039269751588609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
