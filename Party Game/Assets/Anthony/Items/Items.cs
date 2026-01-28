@@ -9,7 +9,7 @@ public class Items : ScriptableObject
     public GameObject Item;
     [TextArea(4, 4)] public string description;
 
-    public void UseItem(Items item) // Get What player Sent This So You Can Remove It From Players Inventory And To Give Effects
+    public void UseItem(Items item) // Get What player Sent This So You Can Remove It From Players Inventory And To Give Effects And Get The A Random Player That Is Not The Same Person As The Player Sending It
     {
         Debug.Log($"Using item: {item.ItemName}");
 
@@ -27,6 +27,10 @@ public class Items : ScriptableObject
             case "Jump Boost":
                 // Logic To Give The Player A Jump Boost
                 Debug.Log("Jump Boost Function Called!");
+                break;
+            case "Teleport":
+                // Logic To Teleport The Player To A Random Player Location
+                Debug.Log("Teleport Function Called!");
                 break;
             default:
                 Debug.Log("Item has no use effect.");

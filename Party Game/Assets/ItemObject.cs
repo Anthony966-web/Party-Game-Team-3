@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    public Items items;
+    public Items item;
+
+    void Awake()
+    {
+        if (item != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = item.Icon;
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision == null) return;
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) // Check If The Player Is Already Holding An Item
         {
-
+            // Add Item To Player Inventory
             Destroy(gameObject);
         }
     }
