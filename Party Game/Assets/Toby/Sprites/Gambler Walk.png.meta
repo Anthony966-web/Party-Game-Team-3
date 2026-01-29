@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: 7168219305080616722
     second: Gambler Walk_6
+  - first:
+      213: -6645118314470976777
+    second: Gambler Walk_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -297,6 +300,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Gambler Walk_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 0
+        width: 19
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f2d38fa91cc7c3a0800000000000000
+      internalID: -6645118314470976777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -318,6 +343,7 @@ TextureImporter:
       Gambler Walk_4: 2987908775595652640
       Gambler Walk_5: 3009199625641859647
       Gambler Walk_6: 7168219305080616722
+      Gambler Walk_7: -6645118314470976777
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

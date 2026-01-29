@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 1525091231}
   - component: {fileID: 1525091232}
   m_Layer: 0
-  m_Name: Stun
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3465b9611ea55f24baf4a2993f505126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: {fileID: 11400000, guid: cc6caeeb9fad2b544b2613c4579b0832, type: 2}
+  item: {fileID: 11400000, guid: cc6caeeb9fad2b544b2613c4579b0832, type: 2}
 --- !u!212 &1525091229
 SpriteRenderer:
   m_ObjectHideFlags: 0
