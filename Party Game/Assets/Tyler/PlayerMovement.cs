@@ -195,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
 		TimeTillAirControl -= Time.deltaTime;
 		LastMoveTime -= Time.deltaTime;
+		LastPressedJumpTime -= Time.deltaTime;
 		#endregion
 
 		#region INPUT HANDLER
@@ -269,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetFloat("Jump", 0f);
 				isOnRightWall = true;
 				isOnLeftWall = false;
-				LastOnWallRightTime = Data.coyoteTime;
+				LastOnWallRightTime = Data.wallJumpCoyoteTime;
 			}
 			else
 			{
@@ -282,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetFloat("Jump", 0f);
 				isOnRightWall = false;
 				isOnLeftWall = true;
-				LastOnWallLeftTime = Data.coyoteTime;
+				LastOnWallLeftTime = Data.wallJumpCoyoteTime;
 			}
 			else
 			{
@@ -377,7 +378,7 @@ public class PlayerMovement : MonoBehaviour
 				Jump();
 			}
 			//WALL JUMP
-			else if (CanWallJump() && LastPressedJumpTime > 0)
+			else if (CanWallJump())
 			{
 				anim.SetFloat("Walking", 0f);
 				anim.SetFloat("Running", 0f);
@@ -778,7 +779,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//Ensures we can't call Wall Jump multiple times from one press
 		LastPressedJumpTime = 0;
-		LastOnGroundTime = 0;
 		LastOnWallRightTime = 0.25f;
 		LastOnWallLeftTime = 0.25f;
 
@@ -885,8 +885,14 @@ public class PlayerMovement : MonoBehaviour
 
 	private bool CanWallJump()
     {
-		return LastPressedJumpTime > 0 && LastOnWallTime > 0 && LastOnGroundTime <= 0 && (!IsWallJumping ||
-			 (LastOnWallRightTime > 0 && _lastWallJumpDir == 1) || (LastOnWallLeftTime > 0 && _lastWallJumpDir == -1));
+		return LastPressedJumpTime > 0 && LastOnWallTime > 0 && LastOnGroundTime <= 0 &&
+             (!IsWallJumping || (LastOnWallRightTime > 0) || (LastOnWallLeftTime > 0));
+	}
+
+	private void OnGUI()
+	{
+		GUI.Box(new Rect(0, 0, 100, 100), LastOnWallLeftTime > 0f ? Texture2D.whiteTexture : Texture2D.redTexture);
+		GUI.Box(new Rect(100, 0, 100, 100), LastOnWallRightTime > 0f ? Texture2D.whiteTexture : Texture2D.redTexture);
 	}
 
 	private bool CanJumpCut()
@@ -913,7 +919,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public bool CanTurn()
 	{
-		if (isGrounded || LastOnWallTime == Data.coyoteTime)
+		if (isGrounded || LastOnWallTime == Data.wallJumpCoyoteTime)
 		{
 			return true;
 		}
