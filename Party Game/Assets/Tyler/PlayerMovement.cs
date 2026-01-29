@@ -9,6 +9,8 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     #region COMPONENTS
     public Rigidbody2D RB { get; private set; }
     public Animator anim { get; private set; }
+	public Transform SpritesTrans;
+	public Transform Checks;
     #endregion
 
     #region STATE PARAMETERS
@@ -73,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region INPUT PARAMETERS
     private Vector2 _moveInput;
+	private float LastMoveInput;
 
 	public float LastPressedJumpTime { get; private set; }
 	#endregion
@@ -93,7 +98,21 @@ public class PlayerMovement : MonoBehaviour
     [Header("Layers & Tags")]
 	[SerializeField] public LayerMask _groundLayer;
     [SerializeField] private LayerMask DeathLayer;
-    #endregion
+	#endregion
+
+	public Items item;
+	public Image ItemIconHolder;
+	private float Timer;
+
+	public bool IsStunned;
+
+	public bool SpeedBoost;
+    public float speedBoostMultiplier = 2f;
+
+    public bool JumpBoost;
+	public float JumpBoostMultiplier = 2f;
+
+	public float targetSpeed;
 
     private void Awake()
 	{
@@ -211,21 +230,30 @@ public class PlayerMovement : MonoBehaviour
 		{
 			IsWalking = false;
 		}
-        #endregion
+
+        if (_moveInput.x == 1)
+        {
+			LastMoveInput = 1;
+        }
+		else if (_moveInput.x == -1)
+		{
+			LastMoveInput = -1;
+		}
+		#endregion
 
 
-        #region COLLISION CHECKS
-        if (!IsJumping)
+		#region COLLISION CHECKS
+		if (!IsJumping)
 		{
 			//Ground Check
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
 			{
-                anim.SetFloat("Jump", 0f);
-                Jumped = false;
-                LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
-            }
+				anim.SetFloat("Jump", 0f);
+				Jumped = false;
+				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+			}
 
-			if(LastOnGroundTime >= Data.coyoteTime)
+			if (LastOnGroundTime >= Data.coyoteTime)
 			{
 				isGrounded = true;
 			}
@@ -235,20 +263,20 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetFloat("Jump", 0f);
 			}
 
-            //Right Wall Check
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+			//Front Wall Check
+			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
 			{
-                anim.SetFloat("Jump", 0f);
+				anim.SetFloat("Jump", 0f);
 				isOnRightWall = true;
 				isOnLeftWall = false;
-                LastOnWallRightTime = Data.coyoteTime;
+				LastOnWallRightTime = Data.coyoteTime;
 			}
 			else
 			{
-                isOnRightWall = false;
-            }
+				isOnRightWall = false;
+			}
 
-			//Left Wall Check
+			//Back Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
 			{
 				anim.SetFloat("Jump", 0f);
@@ -258,8 +286,8 @@ public class PlayerMovement : MonoBehaviour
 			}
 			else
 			{
-                isOnLeftWall = false;
-            }
+				isOnLeftWall = false;
+			}
 
 			if (isGrounded)
 			{
@@ -268,47 +296,42 @@ public class PlayerMovement : MonoBehaviour
 
 			//Momentum Conservation After Hitting The Ground
 			Vector2 groundcheck = new Vector2(_groundCheckPoint.position.x, _groundCheckPoint.position.y);
-            RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
-			if (groundhit && !isOnLeftWall || groundhit && !isOnRightWall)
+			RaycastHit2D groundhit = Physics2D.Raycast(groundcheck, Vector2.down, 0.1f, _groundLayer);
+			if (groundhit)
 			{
-                RB.linearVelocityY = 0f;
-                Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
-            }
-			else
-			{
-
+				RB.linearVelocityY = 0f;
+				Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
 			}
 
-				//Slam Into Wall Fix
-				Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
-			if (IsFacingRight) 
+			//Slam Into Wall Fix
+			Vector2 rightwallcheck = new Vector2(_frontWallCheckPoint.position.x, _frontWallCheckPoint.position.y);
+			if (IsFacingRight)
 			{
-                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
-                if (rightwallhit && !isGrounded)
-                {
-					isGrounded = false;
-                    //Debug.Log("wallhit");
-                    RB.linearVelocityX = 0f;
-                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
-                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
-                }
-            }
+				RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.right, 0.1f, _groundLayer);
+				if (rightwallhit)
+				{
+					//Debug.Log("wallhit");
+					RB.linearVelocityX = 0f;
+					Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+					LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+				}
+			}
 			else
 			{
-                RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.left, 0.1f, _groundLayer);
-                if (rightwallhit)
-                {
-                    //Debug.Log("wallhit");
-                    RB.linearVelocityX = 0f;
-                    Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
-                    LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
-                }
-            }
+				RaycastHit2D rightwallhit = Physics2D.Raycast(rightwallcheck, Vector2.left, 0.1f, _groundLayer);
+				if (rightwallhit)
+				{
+					//Debug.Log("wallhit");
+					RB.linearVelocityX = 0f;
+					Debug.DrawRay(rightwallhit.point, rightwallhit.normal, Color.red);
+					LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+				}
+			}
 
-			
 
-            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
-            LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+
+			//Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+			LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
 		}
 		#endregion
 
@@ -451,7 +474,84 @@ public class PlayerMovement : MonoBehaviour
             RB.linearVelocity = new Vector2(RB.linearVelocity.x, Mathf.Max(RB.linearVelocity.y, -Data.maxFastFallSpeed));
         }
 		#endregion
+
+		if (item != null)
+		{
+            ItemIconHolder.enabled = true;
+            ItemIconHolder.sprite = item.Icon;
+        }
+		else
+		{
+            ItemIconHolder.enabled = false;
+            ItemIconHolder.sprite = null;
+        }
+
+		if (IsStunned == true)
+		{
+			_moveInput = Vector2.zero;
+			Timer += Time.deltaTime;
+			if (Timer >= 5f)
+			{
+				IsStunned = false;
+				Timer = 0f;
+            }
+        }
+
+        if (SpeedBoost == true)
+        {
+            Timer += Time.deltaTime;
+            if (Timer >= 5f)
+            {
+				SpeedBoost = false;
+                Timer = 0f;
+            }
+        }
+
+        if (JumpBoost == true)
+        {
+            Timer += Time.deltaTime;
+            if (Timer >= 5f)
+            {
+                JumpBoost = false;
+                Timer = 0f;
+            }
+        }
     }
+
+    public void Attack(InputAction.CallbackContext ctx)
+    {
+		Debug.Log("Attack");
+
+        if (item == null) return;
+
+        Transform randomPlayer = GetRandomOtherPlayer();
+        if (randomPlayer == null) return;
+
+        item.UseItem(item, transform, randomPlayer);
+        item = null;
+    }
+
+    private Transform GetRandomOtherPlayer()
+	{
+		// Option 1: Find by tag
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+		List<GameObject> validTargets = new List<GameObject>();
+
+		foreach (GameObject player in players)
+		{
+			if (player != gameObject)
+			{
+				validTargets.Add(player);
+			}
+		}
+
+		if (validTargets.Count == 0)
+			return null;
+
+		int index = Random.Range(0, validTargets.Count);
+		return validTargets[index].transform;
+	}
 
     private void FixedUpdate()
 	{
@@ -478,9 +578,13 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Move(InputAction.CallbackContext ctx)
 	{
-
 		_moveInput.x = ctx.ReadValue<Vector2>().x;
 		_moveInput.y = ctx.ReadValue<Vector2>().y;
+
+		if (Mathf.Abs(_moveInput.y) > -0.75f)
+		{
+			_moveInput.y = 0;
+		}
 
         if (_moveInput.x != 0)
 			CheckDirectionToFace(_moveInput.x > 0);
@@ -498,6 +602,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (isGrounded || isOnLeftWall || isOnRightWall)
 		{
+			Debug.Log("Jump Input Received");
             LastPressedJumpTime = Data.jumpInputBufferTime;
         }
 	}
@@ -538,10 +643,18 @@ public class PlayerMovement : MonoBehaviour
     #region RUN METHODS
     private void Run(float lerpAmount)
 	{
-		//Calculate the direction we want to move in and our desired velocity
-		float targetSpeed = _moveInput.x * Data.runMaxSpeed;
-		//We can reduce are control using Lerp() this smooths changes to are direction and speed
-		targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
+        //Calculate the direction we want to move in and our desired velocity
+		if (SpeedBoost == true)
+		{
+            targetSpeed = _moveInput.x * Data.runMaxSpeed * speedBoostMultiplier;
+        }
+		else
+		{
+            targetSpeed = _moveInput.x * Data.runMaxSpeed;
+        }
+
+        //We can reduce are control using Lerp() this smooths changes to are direction and speed
+        targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
 
 		#region Calculate AccelRate
 		float accelRate;
@@ -592,9 +705,17 @@ public class PlayerMovement : MonoBehaviour
 		//Calculate force along x-axis to apply to thr player
 
 		float movement = speedDif * accelRate;
+        float slidemovement = Data.moveSpeedOnSlide;
 
-		//Convert this to a vector and apply to rigidbody
-		RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        //Convert this to a vector and apply to rigidbody
+        if (!IsSliding || !IsFastSliding)
+		{
+            RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        }
+		else
+		{
+            RB.AddForce(slidemovement * Vector2.right, ForceMode2D.Force);
+        }
 
 		/*
 		 * For those interested here is what AddForce() will do
@@ -608,11 +729,12 @@ public class PlayerMovement : MonoBehaviour
 		if (CanTurn())
 		{
             //stores scale and flips the player along the x axis, 
-            Vector3 scale = transform.localScale;
+            Vector3 scale = SpritesTrans.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+			SpritesTrans.localScale = scale;
+			Checks.localScale = scale;
 
-            IsFacingRight = !IsFacingRight;
+			IsFacingRight = !IsFacingRight;
         }
 	}
     #endregion
@@ -637,7 +759,17 @@ public class PlayerMovement : MonoBehaviour
         Jumped = true;
         anim.SetFloat("Jumping", 1f);
 
-        RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+		Debug.Log("JUMP FORCE NORMAL: " + Vector2.up * force);
+        Debug.Log("JUMP FORCE MULTIPLIER: " + Vector2.up * force * JumpBoostMultiplier);
+
+        if (JumpBoost == true)
+		{
+            RB.AddForce(Vector2.up * force * JumpBoostMultiplier, ForceMode2D.Impulse);
+        }
+		else
+		{
+            RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        }
         Debug.Log("BUUUUG");
         #endregion
     }
@@ -647,8 +779,8 @@ public class PlayerMovement : MonoBehaviour
 		//Ensures we can't call Wall Jump multiple times from one press
 		LastPressedJumpTime = 0;
 		LastOnGroundTime = 0;
-		LastOnWallRightTime = 0;
-		LastOnWallLeftTime = 0;
+		LastOnWallRightTime = 0.25f;
+		LastOnWallLeftTime = 0.25f;
 
 		#region Perform Wall Jump
 		Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
@@ -741,7 +873,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (CanTurn())
 			{
-                Turn();
+				Turn();
             }
 		}
 	}
@@ -781,7 +913,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public bool CanTurn()
 	{
-		if (isGrounded || LastOnWallTime < 0f || LastOnWallTime == Data.coyoteTime)
+		if (isGrounded || LastOnWallTime == Data.coyoteTime)
 		{
 			return true;
 		}
