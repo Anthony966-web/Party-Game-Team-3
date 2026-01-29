@@ -9,8 +9,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -98,30 +96,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Layers & Tags")]
 	[SerializeField] public LayerMask _groundLayer;
     [SerializeField] private LayerMask DeathLayer;
-	#endregion
-<<<<<<< HEAD
-=======
+    #endregion
 
-	public Items item;
-	public Image ItemIconHolder;
-	private float Timer;
-
-	public bool IsStunned;
-
-	public bool SpeedBoost;
-    public float speedBoostMultiplier = 2f;
-
-    public bool JumpBoost;
-	public float JumpBoostMultiplier = 2f;
-
-	public float targetSpeed;
->>>>>>> ea10f79d1901d6b7768459c65f5610666757fb9e
-
-	[SerializeField] private Animator animator;
     private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
-		anim = GetComponentInChildren<Animator>();
+		anim = GetComponent<Animator>();
 	}
 
 	private void Start()
@@ -235,16 +215,15 @@ public class PlayerMovement : MonoBehaviour
 			IsWalking = false;
 		}
 
-<<<<<<< HEAD
-		if (Mathf.Abs(RB.linearVelocityX) > 0.01f)
-		{
-			animator.SetBool("isRunning", true);
-		}
-		else
-		{
-            animator.SetBool("isRunning", false);
+        if (Mathf.Abs(RB.linearVelocityX) > 0.01f)
+        {
+            anim.SetBool("isRunning", true);
         }
-=======
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
+
         if (_moveInput.x == 1)
         {
 			LastMoveInput = 1;
@@ -253,7 +232,6 @@ public class PlayerMovement : MonoBehaviour
 		{
 			LastMoveInput = -1;
 		}
->>>>>>> ea10f79d1901d6b7768459c65f5610666757fb9e
 		#endregion
 
 
@@ -489,84 +467,7 @@ public class PlayerMovement : MonoBehaviour
             RB.linearVelocity = new Vector2(RB.linearVelocity.x, Mathf.Max(RB.linearVelocity.y, -Data.maxFastFallSpeed));
         }
 		#endregion
-
-		if (item != null)
-		{
-            ItemIconHolder.enabled = true;
-            ItemIconHolder.sprite = item.Icon;
-        }
-		else
-		{
-            ItemIconHolder.enabled = false;
-            ItemIconHolder.sprite = null;
-        }
-
-		if (IsStunned == true)
-		{
-			_moveInput = Vector2.zero;
-			Timer += Time.deltaTime;
-			if (Timer >= 5f)
-			{
-				IsStunned = false;
-				Timer = 0f;
-            }
-        }
-
-        if (SpeedBoost == true)
-        {
-            Timer += Time.deltaTime;
-            if (Timer >= 5f)
-            {
-				SpeedBoost = false;
-                Timer = 0f;
-            }
-        }
-
-        if (JumpBoost == true)
-        {
-            Timer += Time.deltaTime;
-            if (Timer >= 5f)
-            {
-                JumpBoost = false;
-                Timer = 0f;
-            }
-        }
     }
-
-    public void Attack(InputAction.CallbackContext ctx)
-    {
-		Debug.Log("Attack");
-
-        if (item == null) return;
-
-        Transform randomPlayer = GetRandomOtherPlayer();
-        if (randomPlayer == null) return;
-
-        item.UseItem(item, transform, randomPlayer);
-        item = null;
-    }
-
-    private Transform GetRandomOtherPlayer()
-	{
-		// Option 1: Find by tag
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-		List<GameObject> validTargets = new List<GameObject>();
-
-		foreach (GameObject player in players)
-		{
-			if (player != gameObject)
-			{
-				validTargets.Add(player);
-			}
-		}
-
-		if (validTargets.Count == 0)
-			return null;
-
-		int index = Random.Range(0, validTargets.Count);
-		return validTargets[index].transform;
-	}
 
     private void FixedUpdate()
 	{
@@ -617,7 +518,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (isGrounded || isOnLeftWall || isOnRightWall)
 		{
-			Debug.Log("Jump Input Received");
             LastPressedJumpTime = Data.jumpInputBufferTime;
         }
 	}
@@ -658,18 +558,10 @@ public class PlayerMovement : MonoBehaviour
     #region RUN METHODS
     private void Run(float lerpAmount)
 	{
-        //Calculate the direction we want to move in and our desired velocity
-		if (SpeedBoost == true)
-		{
-            targetSpeed = _moveInput.x * Data.runMaxSpeed * speedBoostMultiplier;
-        }
-		else
-		{
-            targetSpeed = _moveInput.x * Data.runMaxSpeed;
-        }
-
-        //We can reduce are control using Lerp() this smooths changes to are direction and speed
-        targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
+		//Calculate the direction we want to move in and our desired velocity
+		float targetSpeed = _moveInput.x * Data.runMaxSpeed;
+		//We can reduce are control using Lerp() this smooths changes to are direction and speed
+		targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
 
 		#region Calculate AccelRate
 		float accelRate;
@@ -774,17 +666,7 @@ public class PlayerMovement : MonoBehaviour
         Jumped = true;
         anim.SetFloat("Jumping", 1f);
 
-		Debug.Log("JUMP FORCE NORMAL: " + Vector2.up * force);
-        Debug.Log("JUMP FORCE MULTIPLIER: " + Vector2.up * force * JumpBoostMultiplier);
-
-        if (JumpBoost == true)
-		{
-            RB.AddForce(Vector2.up * force * JumpBoostMultiplier, ForceMode2D.Impulse);
-        }
-		else
-		{
-            RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        }
+        RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         Debug.Log("BUUUUG");
         #endregion
     }

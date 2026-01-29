@@ -44,25 +44,25 @@ public class Items : ScriptableObject
 
     public void Stun(Transform RandomPlayer)
     {
-        RandomPlayer.GetComponent<PlayerMovement>().IsStunned = true;
+        //RandomPlayer.GetComponent<PlayerMovement>().IsStunned = true;
         Debug.Log("Item used to stun an enemy!");
     }
 
     public void SpeedBoost(Transform FromPlayer)
     {
-        FromPlayer.GetComponent<PlayerMovement>().SpeedBoost = true;
+        //FromPlayer.GetComponent<PlayerMovement>().SpeedBoost = true;
         Debug.Log("Item used to stun an enemy!");
     }
 
     public void JumpBoost(Transform FromPlayer)
     {
-        FromPlayer.GetComponent<PlayerMovement>().JumpBoost = true;
+        //FromPlayer.GetComponent<PlayerMovement>().JumpBoost = true;
         Debug.Log("Item used to stun an enemy!");
     }
 
     public void Teleport(Transform FromPlayer, Transform RandomPlayer)
     {
-        FromPlayer.transform.position = RandomPlayer.transform.position + new Vector3(2, 0, 0); // Teleport Next To The Random Player
+        //FromPlayer.transform.position = RandomPlayer.transform.position + new Vector3(2, 0, 0); // Teleport Next To The Random Player
         Debug.Log("Item used to stun an enemy!");
     }
 }
