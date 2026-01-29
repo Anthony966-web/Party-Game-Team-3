@@ -16,9 +16,10 @@ public class ItemObject : MonoBehaviour
     {
         if (collision == null) return;
 
-        if (collision.gameObject.CompareTag("Player")) // Check If The Player Is Already Holding An Item
+        if (collision.gameObject.CompareTag("Player") && collision.transform.GetComponent<PlayerMovement>().item == null) // Check If The Player Is Already Holding An Item
         {
             // Add Item To Player Inventory
+            collision.gameObject.GetComponent<PlayerMovement>().item = item;
             Destroy(gameObject);
         }
     }

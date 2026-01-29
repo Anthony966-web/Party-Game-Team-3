@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 864c3327417dd13439c2ec057e2dc11a, type: 3}
-  m_Name: Stun
+  m_Name: Jump Boost
   m_EditorClassIdentifier: 
   Icon: {fileID: -7389113436047644357, guid: ff2bee372f870924cbeebabfeb876b86, type: 3}
-  ItemName: Stun
-  description: Stun The Player Above You
+  ItemName: Jump Boost
+  description: Jump Boost
