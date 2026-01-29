@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864c3327417dd13439c2ec057e2dc11a, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon: {fileID: -7389113436047644357, guid: ff2bee372f870924cbeebabfeb876b86, type: 3}
   ItemName: Stun
-  Item: {fileID: 0}
   description: Stun The Player Above You
