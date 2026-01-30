@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864c3327417dd13439c2ec057e2dc11a, type: 3}
   m_Name: Jump Boost
   m_EditorClassIdentifier: 
-  Icon: {fileID: -7389113436047644357, guid: ff2bee372f870924cbeebabfeb876b86, type: 3}
+  Icon: {fileID: 21300000, guid: f4930e2fe98de38458f1dfc4be421a92, type: 3}
   ItemName: Jump Boost
   description: Jump Boost
