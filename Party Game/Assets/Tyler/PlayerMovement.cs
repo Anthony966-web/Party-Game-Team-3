@@ -8,7 +8,9 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -97,6 +99,20 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] public LayerMask _groundLayer;
     [SerializeField] private LayerMask DeathLayer;
     #endregion
+
+    public Items item;
+    public Image ItemIconHolder;
+    private float Timer;
+
+    public bool IsStunned;
+
+    public bool SpeedBoost;
+    public float speedBoostMultiplier = 2f;
+
+    public bool JumpBoost;
+    public float JumpBoostMultiplier = 2f;
+
+    public float targetSpeed;
 
     private void Awake()
 	{
@@ -467,7 +483,14 @@ public class PlayerMovement : MonoBehaviour
             //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds
             RB.linearVelocity = new Vector2(RB.linearVelocity.x, Mathf.Max(RB.linearVelocity.y, -Data.maxFastFallSpeed));
         }
-		#endregion
+        #endregion
+
+
+        if (item != null) { ItemIconHolder.enabled = true; ItemIconHolder.sprite = item.Icon; } else { ItemIconHolder.enabled = false; ItemIconHolder.sprite = null; }
+        if (IsStunned == true) { _moveInput = Vector2.zero; Timer += Time.deltaTime; if (Timer >= 5f) { IsStunned = false; Timer = 0f; } }
+        if (SpeedBoost == true) { Timer += Time.deltaTime; if (Timer >= 5f) { SpeedBoost = false; Timer = 0f; } }
+        if (JumpBoost == true) { Timer += Time.deltaTime; if (Timer >= 5f) { JumpBoost = false; Timer = 0f; } }
+
     }
 
     private void FixedUpdate()
@@ -508,7 +531,33 @@ public class PlayerMovement : MonoBehaviour
 
 	}
 
-	//Methods which whandle input detected in Update()
+    public void Attack(InputAction.CallbackContext ctx)
+	{ 
+		Debug.Log("Attack"); 
+		if (item == null) return; 
+		Transform randomPlayer = GetRandomOtherPlayer(); 
+		if (randomPlayer == null) return; 
+		item.UseItem(item, transform, randomPlayer); 
+		item = null; 
+	}
+
+    private Transform GetRandomOtherPlayer()
+    { 
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player"); 
+		List<GameObject> validTargets = new List<GameObject>(); 
+		foreach (GameObject player in players) 
+		{ 
+			if (player != gameObject) 
+			{ 
+				validTargets.Add(player); 
+			} 
+		} 
+		if (validTargets.Count == 0) return null;
+		int index = Random.Range(0, validTargets.Count);
+		return validTargets[index].transform; 
+	}
+
+    //Methods which whandle input detected in Update()
     public void OnJumpInput(InputAction.CallbackContext ctx)
 	{
 		if (ctx.canceled)
@@ -559,10 +608,17 @@ public class PlayerMovement : MonoBehaviour
     #region RUN METHODS
     private void Run(float lerpAmount)
 	{
-		//Calculate the direction we want to move in and our desired velocity
-		float targetSpeed = _moveInput.x * Data.runMaxSpeed;
-		//We can reduce are control using Lerp() this smooths changes to are direction and speed
-		targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
+        //Calculate the direction we want to move in and our desired velocity
+        float maxSpeed = Data.runMaxSpeed;
+
+        if (SpeedBoost)
+        {
+            maxSpeed *= speedBoostMultiplier;
+        }
+
+        float targetSpeed = _moveInput.x * maxSpeed;
+        //We can reduce are control using Lerp() this smooths changes to are direction and speed
+        targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
 
 		#region Calculate AccelRate
 		float accelRate;
@@ -664,6 +720,13 @@ public class PlayerMovement : MonoBehaviour
 		{
             force -= RB.linearVelocity.y;
         }
+
+        // Apply jump boost
+        if (JumpBoost)
+        {
+            force *= JumpBoostMultiplier;
+        }
+
         Jumped = true;
         anim.SetFloat("Jumping", 1f);
 
