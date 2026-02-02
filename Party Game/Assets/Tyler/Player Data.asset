@@ -45,6 +45,7 @@ MonoBehaviour:
   fastSlideSpeed: -15
   fastSlideAccel: 2
   coyoteTime: 0.01
+  wallJumpCoyoteTime: 0.5
   jumpInputBufferTime: 0.01
   dashAmount: 0
   dashSpeed: 0
