@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: OneWay_2
+  m_Name: Bridge_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -988974424559114816, guid: 1ced6cb6fd881764daa1fd84679dc2e3, type: 3}
+  m_Sprite: {fileID: 7265813586516431896, guid: 8cc41efd1b89fc94b9becf986f88f59a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
