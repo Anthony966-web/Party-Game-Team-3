@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 583021332735438297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.016, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 3092802054847763376}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.534, y: -0.171, z: 0}
+  m_LocalPosition: {x: 0.55, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -259,7 +259,7 @@ Transform:
   m_GameObject: {fileID: 3814150172969837438}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0004, y: -1.5302, z: 0}
+  m_LocalPosition: {x: 0, y: -1.5302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -400,7 +400,7 @@ Transform:
   m_GameObject: {fileID: 5452335654812457787}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.46, y: -0.17, z: 0}
+  m_LocalPosition: {x: -0.55, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -437,7 +437,7 @@ Transform:
   m_GameObject: {fileID: 8783351969131339897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.351502, y: -5.2041087, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -473,7 +473,15 @@ MonoBehaviour:
   DeathLayer:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 4065916641725648466}
+  item: {fileID: 0}
+  ItemIconHolder: {fileID: 0}
+  IsStunned: 0
+  SpeedBoost: 0
+  speedBoostMultiplier: 2
+  JumpBoost: 0
+  JumpBoostMultiplier: 2
+  BounceGameObject: {fileID: 0}
+  targetSpeed: 0
 --- !u!50 &1306871025367645164
 Rigidbody2D:
   serializedVersion: 5
@@ -821,6 +829,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: {fileID: 0}
+  Sprite: {fileID: 0}
+  playerSprites: []
+  PlayersAnimatorController: []
 --- !u!1 &9223035008845539754
 GameObject:
   m_ObjectHideFlags: 0
