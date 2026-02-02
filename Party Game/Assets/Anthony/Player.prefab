@@ -409,6 +409,7 @@ MonoBehaviour:
   speedBoostMultiplier: 2
   JumpBoost: 0
   JumpBoostMultiplier: 2
+  BounceGameObject: {fileID: 5420927309309139055, guid: b07a9cf81d9155e499afb172429fcb6b, type: 3}
   targetSpeed: 0
 --- !u!50 &4731824204445592200
 Rigidbody2D:

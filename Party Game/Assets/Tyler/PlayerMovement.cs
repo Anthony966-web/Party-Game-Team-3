@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
     public bool JumpBoost;
     public float JumpBoostMultiplier = 2f;
 
+	public GameObject BounceGameObject;
+
     public float targetSpeed;
 
     private void Awake()
@@ -493,6 +495,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+	public void SpawnBounce(Transform player)
+	{
+		GameObject Bounce = Instantiate(BounceGameObject, new Vector2(player.position.x, player.position.y - 2f), Quaternion.identity);
+		Destroy(Bounce, 10f);
+    }
+
     private void FixedUpdate()
 	{
         slopeCheck();
@@ -535,8 +543,8 @@ public class PlayerMovement : MonoBehaviour
 	{ 
 		Debug.Log("Attack"); 
 		if (item == null) return; 
-		Transform randomPlayer = GetRandomOtherPlayer(); 
-		if (randomPlayer == null) return; 
+		Transform randomPlayer = GetRandomOtherPlayer();
+		//if (randomPlayer == null) return; 
 		item.UseItem(item, transform, randomPlayer); 
 		item = null; 
 	}
