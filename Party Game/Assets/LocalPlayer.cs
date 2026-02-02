@@ -10,6 +10,10 @@ public class LocalPlayer : MonoBehaviour
     {
         PlayerInput input = GetComponent<PlayerInput>();
 
+        Debug.Log("Player Input Index: " + input.transform);
+
         playerNumber = input.playerIndex + 1;
+
+        gameObject.name = "LocalPlayer" + playerNumber;
     }
 }
