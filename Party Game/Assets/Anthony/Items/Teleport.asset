@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864c3327417dd13439c2ec057e2dc11a, type: 3}
   m_Name: Teleport
   m_EditorClassIdentifier: 
-  Icon: {fileID: -7389113436047644357, guid: ff2bee372f870924cbeebabfeb876b86, type: 3}
+  Icon: {fileID: -554402598025179142, guid: 2d07b8dab28fdaf479c90e51613dfb14, type: 3}
   ItemName: Teleport
   description: Teleport

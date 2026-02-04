@@ -1,7 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<<< HEAD:Party Game/Assets/Jonathan/SpriteJ/Bridge_0.asset.meta
-guid: 9db20fbb64ebe7d40bd1f25715ab4fb2
+guid: 651630806edf0c6459a166123d89b4c2
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
@@ -11,16 +10,6 @@ NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
 >>>>>>>> 1d443263f6911728fbf7ae77fd3c1f8df04b3b00:Party Game/Assets/Ewan/Stuff/Fancy Idle.anim.meta
-=======
-<<<<<<< HEAD
-guid: 836b67e5c577f4f4fa959a5b4eb1097b
-=======
-guid: 84f3455a4ef3eed498a2c67704f2960b
->>>>>>> 003351cd82668929a6b32a40c9da5f4ed862e55d
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
->>>>>>> 1d443263f6911728fbf7ae77fd3c1f8df04b3b00
   userData: 
   assetBundleName: 
   assetBundleVariant: 

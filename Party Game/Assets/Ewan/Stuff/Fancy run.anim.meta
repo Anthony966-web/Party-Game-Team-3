@@ -1,7 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<<< HEAD:Party Game/Assets/Jonathan/SpriteJ/OneWay_0 1.controller.meta
-guid: 46c923590f197be469922699602b4cf2
+guid: 7346919ce1cc40e479ce7f9a0feebb02
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
@@ -11,16 +10,6 @@ NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
 >>>>>>>> 1d443263f6911728fbf7ae77fd3c1f8df04b3b00:Party Game/Assets/Ewan/Stuff/Fancy run.anim.meta
-=======
-<<<<<<< HEAD
-guid: 9d0dba8104ca6b942bdf0537ac768a12
-=======
-guid: 985fa465b70a9e3428d6efecfa71743d
->>>>>>> 003351cd82668929a6b32a40c9da5f4ed862e55d
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
->>>>>>> 1d443263f6911728fbf7ae77fd3c1f8df04b3b00
   userData: 
   assetBundleName: 
   assetBundleVariant: 
