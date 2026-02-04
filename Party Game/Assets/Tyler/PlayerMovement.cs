@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
     public bool JumpBoost;
     public float JumpBoostMultiplier = 2f;
 
+	public GameObject BounceGameObject;
+
     public float targetSpeed;
 
     private void Awake()
@@ -201,25 +203,25 @@ public class PlayerMovement : MonoBehaviour
 		#region INPUT HANDLER
         if (RB.linearVelocity.x > 0 && RB.linearVelocity.x < 6 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping || RB.linearVelocity.x < 0 && RB.linearVelocity.x > -6 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping)
 		{
-			anim.SetFloat("Walking", 1f);
-			anim.SetFloat("Running", 0f);
-			anim.SetFloat("Idleing", 0f);
+			//anim.SetFloat("Walking", 1f);
+			//anim.SetFloat("Running", 0f);
+			//anim.SetFloat("Idleing", 0f);
 		}
 
 		if (IsRunning && !IsJumping)
 		{
-			anim.SetFloat("Walking", 0f);
-			anim.SetFloat("Running", 1f);
-			anim.SetFloat("Idleing", 0f);
+			//anim.SetFloat("Walking", 0f);
+			//anim.SetFloat("Running", 1f);
+			//anim.SetFloat("Idleing", 0f);
 		}
 
 		if (RB.linearVelocity.x == 0 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) &&  !IsJumping)
 		{
 			IsWalking = false;
 			IsRunning = false;
-			anim.SetFloat("Idleing", 1f);
-			anim.SetFloat("Walking", 0f);
-			anim.SetFloat("Running", 0f);
+			//anim.SetFloat("Idleing", 1f);
+			//anim.SetFloat("Walking", 0f);
+			//anim.SetFloat("Running", 0f);
 		}
 		if (IsJumping || RB.linearVelocity.y != 0)
 		{
@@ -258,25 +260,26 @@ public class PlayerMovement : MonoBehaviour
 			//Ground Check
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 				Jumped = false;
 				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
 			}
 
 			if (LastOnGroundTime >= Data.coyoteTime)
 			{
-				isGrounded = true;
+                
+                isGrounded = true;
 			}
 
 			if (!Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping && !Jumped) //checks if set box overlaps with ground
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 			}
 
 			//Front Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 				isOnRightWall = true;
 				isOnLeftWall = false;
 				LastOnWallRightTime = Data.wallJumpCoyoteTime;
@@ -289,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
 			//Back Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 				isOnRightWall = false;
 				isOnLeftWall = true;
 				LastOnWallLeftTime = Data.wallJumpCoyoteTime;
@@ -301,6 +304,7 @@ public class PlayerMovement : MonoBehaviour
 
 			if (isGrounded)
 			{
+				CheckDirectionToFace(_moveInput.x > 0);
 				IsFastFalling = false;
 			}
 
@@ -310,7 +314,8 @@ public class PlayerMovement : MonoBehaviour
 			if (groundhit)
 			{
 				RB.linearVelocityY = 0f;
-				Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
+                CheckDirectionToFace(_moveInput.x > 0);
+                Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
 			}
 
 			//Slam Into Wall Fix
@@ -375,10 +380,10 @@ public class PlayerMovement : MonoBehaviour
 			//Jump
 			if (CanJump() && LastPressedJumpTime > 0)
 			{
-				anim.SetFloat("Walking", 0f);
-				anim.SetFloat("Running", 0f);
-				anim.SetFloat("Idleing", 0f);
-				anim.SetFloat("Jump", 1f);
+				//anim.SetFloat("Walking", 0f);
+				//anim.SetFloat("Running", 0f);
+				//anim.SetFloat("Idleing", 0f);
+				//anim.SetFloat("Jump", 1f);
 				IsJumping = true;
 				isGrounded = false;
 				IsWallJumping = false;
@@ -389,10 +394,10 @@ public class PlayerMovement : MonoBehaviour
 			//WALL JUMP
 			else if (CanWallJump())
 			{
-				anim.SetFloat("Walking", 0f);
-				anim.SetFloat("Running", 0f);
-				anim.SetFloat("Idleing", 0f);
-				anim.SetFloat("Jump", 1f);
+				//anim.SetFloat("Walking", 0f);
+				//anim.SetFloat("Running", 0f);
+				//anim.SetFloat("Idleing", 0f);
+				//anim.SetFloat("Jump", 1f);
 				IsWallJumping = true;
 				IsJumping = false;
 				_isJumpCut = false;
@@ -408,9 +413,9 @@ public class PlayerMovement : MonoBehaviour
         #region SLIDE CHECKS
         if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
 		{
-			anim.SetFloat("Walking", 0f);
-			anim.SetFloat("Running", 0f);
-            anim.SetFloat("WallSliding", 1f);
+			//anim.SetFloat("Walking", 0f);
+			//anim.SetFloat("Running", 0f);
+            //anim.SetFloat("WallSliding", 1f);
 
 			isGrounded = false;
             IsFastSliding = false;
@@ -418,16 +423,16 @@ public class PlayerMovement : MonoBehaviour
         }
 		else
 		{
-            anim.SetFloat("WallSliding", 0f);
+            //anim.SetFloat("WallSliding", 0f);
 
             IsSliding = false;
         }
 
         if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x == 0) || (LastOnWallRightTime > 0 && _moveInput.x == 0)))
         {
-            anim.SetFloat("Walking", 0f);
-            anim.SetFloat("Running", 0f);
-            anim.SetFloat("WallSliding", 1f);
+            //anim.SetFloat("Walking", 0f);
+            //anim.SetFloat("Running", 0f);
+            //anim.SetFloat("WallSliding", 1f);
 
 			isGrounded = false;
             IsFastSliding = true;
@@ -493,6 +498,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+	public void SpawnBounce(Transform player)
+	{
+		GameObject Bounce = Instantiate(BounceGameObject, new Vector2(player.position.x, player.position.y - 2f), Quaternion.identity);
+		Destroy(Bounce, 10f);
+    }
+
     private void FixedUpdate()
 	{
         slopeCheck();
@@ -535,8 +546,8 @@ public class PlayerMovement : MonoBehaviour
 	{ 
 		Debug.Log("Attack"); 
 		if (item == null) return; 
-		Transform randomPlayer = GetRandomOtherPlayer(); 
-		if (randomPlayer == null) return; 
+		Transform randomPlayer = GetRandomOtherPlayer();
+		//if (randomPlayer == null) return; 
 		item.UseItem(item, transform, randomPlayer); 
 		item = null; 
 	}
@@ -895,10 +906,10 @@ public class PlayerMovement : MonoBehaviour
         if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, DeathLayer))
         {
             IsDead = true;
-            anim.SetFloat("Jump", 0f);
-            anim.SetFloat("Walking", 0f);
-            anim.SetFloat("Running", 0f);
-            anim.SetFloat("Idleing", 0f);
+            //anim.SetFloat("Jump", 0f);
+            //anim.SetFloat("Walking", 0f);
+            //anim.SetFloat("Running", 0f);
+            //anim.SetFloat("Idleing", 0f);
         }
     }
 
