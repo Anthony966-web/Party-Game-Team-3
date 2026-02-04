@@ -43,11 +43,14 @@ public class EscapeMenu : MonoBehaviour
         if (isPaused == false)
         {
             isPaused = true;
-
+            transform.GetComponent<PlayerCanvasUI>().IsPaused = true;
+            escapemenu.SetActive(true);
         }
         else if (isPaused == true)
         {
             isPaused = false;
+            transform.GetComponent<PlayerCanvasUI>().IsPaused = false;
+            escapemenu.SetActive(false);
         }
     }
 }
