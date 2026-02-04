@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Snowseph Jump_0: 2487238473661827178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
