@@ -721,7 +721,7 @@ public class PlayerMovement : MonoBehaviour
 		LastPressedJumpTime = 0;
 		LastOnGroundTime = 0;
 
-        anim.SetFloat("Jumping", 1f);
+        //anim.SetFloat("Jumping", 1f);
         #region Perform Jump
         //We increase the force applied if we are falling
         //This means we'll always feel like we jump the same amount 
@@ -739,10 +739,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Jumped = true;
-        anim.SetFloat("Jumping", 1f);
+        //anim.SetFloat("Jumping", 1f);
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        Debug.Log("BUUUUG");
         #endregion
     }
 
