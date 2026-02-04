@@ -1,31 +1,16 @@
 fileFormatVersion: 2
-guid: f23153fda2a6d52479def96947e7c0d4
+guid: 1ced6cb6fd881764daa1fd84679dc2e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3256300571518110265
-    second: Balenciagoon Run_0
+      213: 3883210560717708355
+    second: OneWay_0
   - first:
-      213: 2071200575983800402
-    second: Balenciagoon Run_1
+      213: -7278875100728886850
+    second: OneWay_1
   - first:
-      213: 84307833568349070
-    second: Balenciagoon Run_2
-  - first:
-      213: -4824369726454171039
-    second: Balenciagoon Run_3
-  - first:
-      213: -220074941973709246
-    second: Balenciagoon Run_4
-  - first:
-      213: 5624922202725056597
-    second: Balenciagoon Run_5
-  - first:
-      213: 8783169640952135620
-    second: Balenciagoon Run_6
-  - first:
-      213: 652773240600709042
-    second: Balenciagoon Run_7
+      213: -988974424559114816
+    second: OneWay_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 19
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -95,8 +80,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balenciagoon Run_0
+      name: OneWay_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 60
-        height: 60
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93a0d3ffd14b03d20800000000000000
-      internalID: 3256300571518110265
+      spriteID: 34cdf9b4e6fe3e530800000000000000
+      internalID: 3883210560717708355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balenciagoon Run_1
+      name: OneWay_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 120
-        width: 60
-        height: 60
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,42 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 250591e33f16ebc10800000000000000
-      internalID: 2071200575983800402
+      spriteID: eb97e9839ad3cfa90800000000000000
+      internalID: -7278875100728886850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balenciagoon Run_2
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 120
-        width: 60
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8bcf9727858b2100800000000000000
-      internalID: 84307833568349070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balenciagoon Run_3
+      name: OneWay_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 60
-        height: 60
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,96 +191,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16afc8d5b456c0db0800000000000000
-      internalID: -4824369726454171039
+      spriteID: 0c5253c20057642f0800000000000000
+      internalID: -988974424559114816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balenciagoon Run_4
+      name: OneWay_3
       rect:
         serializedVersion: 2
-        x: 60
-        y: 60
-        width: 60
-        height: 60
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24e31bb910322fcf0800000000000000
-      internalID: -220074941973709246
+      spriteID: 4736891d1934b264cac51eb4a1aca157
+      internalID: -544182621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balenciagoon Run_5
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 60
-        width: 60
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 55082a6f0fcbf0e40800000000000000
-      internalID: 5624922202725056597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balenciagoon Run_6
+      name: OneWay_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 60
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4cf72f2d04614e970800000000000000
-      internalID: 8783169640952135620
+      spriteID: c3933180b1307264daf09a46e9e46ba6
+      internalID: -773803312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balenciagoon Run_7
+      name: OneWay_5
       rect:
         serializedVersion: 2
-        x: 60
+        x: 32
         y: 0
-        width: 60
-        height: 60
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b7c2e4cdcd1f0900800000000000000
-      internalID: 652773240600709042
+      spriteID: 1e1c5654a3a6b15469e2d17db723493e
+      internalID: 2069129250
       vertices: []
       indices: 
       edges: []
@@ -326,7 +267,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 66fef8b7e55e9104faec78b2dd9f62e4
+    spriteID: 0d283c4f8fb3b4847a66ae99f7c5a2ac
     internalID: 0
     vertices: []
     indices: 
@@ -336,14 +277,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balenciagoon Run_0: 3256300571518110265
-      Balenciagoon Run_1: 2071200575983800402
-      Balenciagoon Run_2: 84307833568349070
-      Balenciagoon Run_3: -4824369726454171039
-      Balenciagoon Run_4: -220074941973709246
-      Balenciagoon Run_5: 5624922202725056597
-      Balenciagoon Run_6: 8783169640952135620
-      Balenciagoon Run_7: 652773240600709042
+      OneWay_0: 3883210560717708355
+      OneWay_1: -7278875100728886850
+      OneWay_2: -988974424559114816
+      OneWay_3: -544182621
+      OneWay_4: -773803312
+      OneWay_5: 2069129250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

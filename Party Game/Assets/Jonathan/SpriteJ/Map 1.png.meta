@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: aab1753e1853d574da1039c0458d2ebc
+guid: 229fdee479c8df44993875464fb1f01e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4063323202008020314
-    second: Balenciagoon_0
+      213: 9193124801489320313
+    second: Map 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 19
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -74,8 +74,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balenciagoon_0
+      name: Map 1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 26
         y: 0
-        width: 60
-        height: 60
+        width: 222
+        height: 231
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a557a4f7ce2d36830800000000000000
-      internalID: 4063323202008020314
+      spriteID: 979ba98bc4a849f70800000000000000
+      internalID: 9193124801489320313
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8918ee19e84f3084f959e89aafdc5da7
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balenciagoon_0: 4063323202008020314
+      Map 1_0: 9193124801489320313
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

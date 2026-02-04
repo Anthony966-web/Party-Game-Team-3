@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: aab1753e1853d574da1039c0458d2ebc
+guid: fc40c38e80aa82941baa3f1110b6e383
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4063323202008020314
-    second: Balenciagoon_0
+      213: 531738291849635660
+    second: Racer Jump_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 19
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balenciagoon_0
+      name: Racer Jump_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 60
-        height: 60
+        x: 17
+        y: 5
+        width: 30
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a557a4f7ce2d36830800000000000000
-      internalID: 4063323202008020314
+      spriteID: c47ab2fb82d116700800000000000000
+      internalID: 531738291849635660
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8918ee19e84f3084f959e89aafdc5da7
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balenciagoon_0: 4063323202008020314
+      Racer Jump_0: 531738291849635660
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
