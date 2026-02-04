@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    //[Tooltips("Assigns the item to the player's inventory upon collision.")]
+    [Tooltip("Assigns the item to the player's inventory upon collision.")]
     public Items item;
 
     void Awake()
