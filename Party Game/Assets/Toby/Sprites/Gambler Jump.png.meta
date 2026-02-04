@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: aab1753e1853d574da1039c0458d2ebc
+guid: c266ccc2a08e76440ad65febdc261b5c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4063323202008020314
-    second: Balenciagoon_0
+      213: -9144609848574036293
+    second: Gambler Jump_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balenciagoon_0
+      name: Gambler Jump_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 60
-        height: 60
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a557a4f7ce2d36830800000000000000
-      internalID: 4063323202008020314
+      spriteID: bb6b43efac1d71180800000000000000
+      internalID: -9144609848574036293
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8918ee19e84f3084f959e89aafdc5da7
+    spriteID: cf36c228461e80740b87ad06dda1306c
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balenciagoon_0: 4063323202008020314
+      Gambler Jump_0: -9144609848574036293
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
