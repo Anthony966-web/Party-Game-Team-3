@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    //[Tooltips("Assigns the item to the player's inventory upon collision.")]
     public Items item;
 
     void Awake()
@@ -19,6 +20,7 @@ public class ItemObject : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && collision.transform.GetComponent<PlayerMovement>().item == null) // Check If The Player Is Already Holding An Item
         {
             // Add Item To Player Inventory
+
             collision.gameObject.GetComponent<PlayerMovement>().item = item;
             Destroy(gameObject);
         }
