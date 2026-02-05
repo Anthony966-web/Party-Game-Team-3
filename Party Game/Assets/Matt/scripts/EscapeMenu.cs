@@ -25,6 +25,8 @@ public class EscapeMenu : MonoBehaviour
         escapemenu.SetActive(false);
         escapemenubackground.SetActive(false);
         IsEscaped = false;
+        isPaused = false;
+        transform.GetComponent<PlayerCanvasUI>().IsPaused = false;
         Time.timeScale = 1;
     }
 
