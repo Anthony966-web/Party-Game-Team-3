@@ -1,7 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Party Game/Assets/Jonathan/Default Tile.physicsMaterial2D.meta
+guid: 582e977e47cad004c967d9e646e56654
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+========
 guid: fe627b7c9f122624e870c67552c03b77
 PrefabImporter:
   externalObjects: {}
+>>>>>>>> 4f5af69f14af726636bd60de4d0282db82683b14:Party Game/Assets/Ewan/Stuff/Fancy.prefab.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
