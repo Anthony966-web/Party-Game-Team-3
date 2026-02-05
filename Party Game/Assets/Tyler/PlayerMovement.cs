@@ -298,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
 
 			if (isGrounded)
 			{
-				CheckDirectionToFace(_moveInput.x > 0);
+				//CheckDirectionToFace(_moveInput.x > 0);
 				IsFastFalling = false;
 			}
 
@@ -308,7 +308,7 @@ public class PlayerMovement : MonoBehaviour
 			if (groundhit)
 			{
 				RB.linearVelocityY = 0f;
-                CheckDirectionToFace(_moveInput.x > 0);
+                CheckDirectionToFace(LastMoveInput > 0);
                 Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
 			}
 
@@ -616,6 +616,10 @@ public class PlayerMovement : MonoBehaviour
     #region RUN METHODS
     private void Run(float lerpAmount)
 	{
+		if (_moveInput.x != 0)
+		{
+            LastMoveTime = 0;
+        }
         //Calculate the direction we want to move in and our desired velocity
         float maxSpeed = Data.runMaxSpeed;
 
@@ -719,6 +723,7 @@ public class PlayerMovement : MonoBehaviour
 		LastOnGroundTime = 0;
 
         anim.SetTrigger("Jump");
+		Debug.Log("bug");
         #region Perform Jump
         //We increase the force applied if we are falling
         //This means we'll always feel like we jump the same amount 
@@ -738,7 +743,6 @@ public class PlayerMovement : MonoBehaviour
         Jumped = true;
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        Debug.Log("BUUUUG");
         #endregion
     }
 
