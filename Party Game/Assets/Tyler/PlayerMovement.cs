@@ -1,10 +1,4 @@
-/*
-	Created by @DawnosaurDev at youtube.com/c/DawnosaurStudios
-	Thanks so much for checking this out and I hope you find it helpful! 
-	If you have any further queries, questions or feedback feel free to reach out on my twitter or leave a comment on youtube :D
 
-	Feel free to use this in your own games, and I'd love to see anything you make!
- */
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -348,6 +342,9 @@ public class PlayerMovement : MonoBehaviour
 			//Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
 			LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
 		}
+
+		anim.SetBool("isGrounded", isGrounded);
+
 		#endregion
 
 		#region JUMP CHECKS
@@ -721,7 +718,7 @@ public class PlayerMovement : MonoBehaviour
 		LastPressedJumpTime = 0;
 		LastOnGroundTime = 0;
 
-        anim.SetFloat("Jumping", 1f);
+        anim.SetTrigger("Jump");
         #region Perform Jump
         //We increase the force applied if we are falling
         //This means we'll always feel like we jump the same amount 
@@ -739,7 +736,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Jumped = true;
-        anim.SetFloat("Jumping", 1f);
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         Debug.Log("BUUUUG");

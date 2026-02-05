@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerCanvasUI : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerCanvasUI : MonoBehaviour
     public Sprite[] playerSprites; // array of player sprites for different players
 
     public RuntimeAnimatorController[] PlayersAnimatorController;
+
+    public bool IsPaused;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,11 +48,5 @@ public class PlayerCanvasUI : MonoBehaviour
                     break;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
