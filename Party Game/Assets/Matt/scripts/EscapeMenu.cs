@@ -18,7 +18,7 @@ public class EscapeMenu : MonoBehaviour
         escapemenu.SetActive(false);
         escapemenubackground.SetActive(false);
         IsEscaped = false;
-        SceneManager.LoadScene("Title_Screne");
+        SceneManager.LoadScene("title screne");
     }
     public void Resume()
     {
