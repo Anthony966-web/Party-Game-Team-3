@@ -237,11 +237,11 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
 
-        if (_moveInput.x == 1)
+        if (_moveInput.x > 0)
         {
 			LastMoveInput = 1;
         }
-		else if (_moveInput.x == -1)
+		else if (_moveInput.x < 0)
 		{
 			LastMoveInput = -1;
 		}
