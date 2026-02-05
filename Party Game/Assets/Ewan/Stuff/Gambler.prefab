@@ -525,6 +525,7 @@ MonoBehaviour:
   Sprite: {fileID: 0}
   playerSprites: []
   PlayersAnimatorController: []
+  IsPaused: 0
 --- !u!1 &5890060435412063780
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +627,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &2516443418794329525
 CapsuleCollider2D:

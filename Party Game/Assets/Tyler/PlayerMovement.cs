@@ -344,6 +344,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		anim.SetBool("isGrounded", isGrounded);
+	    anim.SetBool("isWallSliding",(isOnRightWall||isOnLeftWall) && RB.linearVelocityY<0);
 
 		#endregion
 
@@ -752,9 +753,10 @@ public class PlayerMovement : MonoBehaviour
 		LastPressedJumpTime = 0;
 		LastOnWallRightTime = 0.25f;
 		LastOnWallLeftTime = 0.25f;
+        anim.SetTrigger("Jump");
 
-		#region Perform Wall Jump
-		Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
+        #region Perform Wall Jump
+        Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
 		force.x *= dir; //apply force in opposite direction of wall
 
 		if (isOnLeftWall || isOnRightWall)
