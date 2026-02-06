@@ -641,6 +641,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: {fileID: 0}
+  Sprite: {fileID: 0}
+  playerSprites: []
+  PlayersAnimatorController: []
+  IsPaused: 0
 --- !u!1 &2359856535254524071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1544,15 @@ MonoBehaviour:
   DeathLayer:
     serializedVersion: 2
     m_Bits: 64
+  item: {fileID: 0}
+  ItemIconHolder: {fileID: 0}
+  IsStunned: 0
+  SpeedBoost: 0
+  speedBoostMultiplier: 2
+  JumpBoost: 0
+  JumpBoostMultiplier: 2
+  BounceGameObject: {fileID: 0}
+  targetSpeed: 0
 --- !u!50 &7394151788219280373
 Rigidbody2D:
   serializedVersion: 5
@@ -1565,7 +1578,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &5730668596063332431
 CapsuleCollider2D:
