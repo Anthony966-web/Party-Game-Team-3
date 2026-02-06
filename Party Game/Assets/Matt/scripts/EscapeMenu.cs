@@ -18,13 +18,15 @@ public class EscapeMenu : MonoBehaviour
         escapemenu.SetActive(false);
         escapemenubackground.SetActive(false);
         IsEscaped = false;
-        SceneManager.LoadScene("Title_Screne");
+        SceneManager.LoadScene("title screne");
     }
     public void Resume()
     {
         escapemenu.SetActive(false);
         escapemenubackground.SetActive(false);
         IsEscaped = false;
+        isPaused = false;
+        transform.GetComponent<PlayerCanvasUI>().IsPaused = false;
         Time.timeScale = 1;
     }
 

@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Playgame()
     {
-        SceneManager.LoadScene("PlayerTestScene");
+        SceneManager.LoadScene("PlayerTestScene 1");
     }
 
     public void PlayCredits()
