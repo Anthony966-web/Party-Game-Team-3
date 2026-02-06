@@ -561,7 +561,7 @@ public class PlayerMovement : MonoBehaviour
 				validTargets.Add(player); 
 			} 
 		} 
-		if (validTargets.Count == 0) return null;
+		if (validTargets.Count == 0) return this.transform;
 		int index = Random.Range(0, validTargets.Count);
 		return validTargets[index].transform; 
 	}
