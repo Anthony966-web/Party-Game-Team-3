@@ -129,10 +129,17 @@ TextureImporter:
       name: Snowseph Wall_0
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 0
         y: 0
         width: 60
         height: 60
+=======
+        x: 35
+        y: 3
+        width: 25
+        height: 48
+>>>>>>> a7e55cff36e78240d9710b74f48dc23e85322c73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
