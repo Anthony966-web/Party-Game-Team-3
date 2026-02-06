@@ -3,8 +3,8 @@ guid: 31ecd8edb8d8de742b6309bc22dd6475
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8633011829426917716
-    second: Racer Wall 1_0
+      213: -2762066416221659055
+    second: Racer Wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,10 +126,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Racer Wall 1_0
+      name: Racer Wall_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 33
         y: 3
         width: 27
         height: 49
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4519cbae48e9ec770800000000000000
-      internalID: 8633011829426917716
+      spriteID: 150621f7a3b2ba9d0800000000000000
+      internalID: -2762066416221659055
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Racer Wall 1_0: 8633011829426917716
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
