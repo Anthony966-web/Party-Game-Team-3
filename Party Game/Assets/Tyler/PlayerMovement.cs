@@ -624,6 +624,10 @@ public class PlayerMovement : MonoBehaviour
         //Calculate the direction we want to move in and our desired velocity
         float maxSpeed = Data.runMaxSpeed;
 
+        int placement = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None).OrderBy(item => -item.transform.position.y).ToList().IndexOf(this);
+        // 0 - First place
+        // 3 - Last place (in a 4 player game)
+
         if (SpeedBoost)
         {
             maxSpeed *= speedBoostMultiplier;
