@@ -36,6 +36,11 @@ public class Items : ScriptableObject
                 Teleport(FromPlayer, RandomPlayer);
                 Debug.Log("Teleport Function Called!");
                 break;
+            case "Bounce":
+                // Logic To Spawn A Bounce To Bounce Players
+                Bounce(FromPlayer);
+                Debug.Log("Teleport Function Called!");
+                break;
             default:
                 Debug.Log("Item has no use effect.");
                 break;
@@ -51,18 +56,24 @@ public class Items : ScriptableObject
     public void SpeedBoost(Transform FromPlayer)
     {
         FromPlayer.GetComponent<PlayerMovement>().SpeedBoost = true;
-        Debug.Log("Item used to stun an enemy!");
+        Debug.Log("Item used for player speed boost!");
     }
 
     public void JumpBoost(Transform FromPlayer)
     {
         FromPlayer.GetComponent<PlayerMovement>().JumpBoost = true;
-        Debug.Log("Item used to stun an enemy!");
+        Debug.Log("Item used for player jump boost!");
     }
 
     public void Teleport(Transform FromPlayer, Transform RandomPlayer)
     {
         FromPlayer.transform.position = RandomPlayer.transform.position + new Vector3(2, 0, 0); // Teleport Next To The Random Player
-        Debug.Log("Item used to stun an enemy!");
+        Debug.Log("Item used to teleport to: " + RandomPlayer.transform.name);
+    }
+
+    public void Bounce(Transform FromPlayer)
+    {
+        FromPlayer.GetComponent<PlayerMovement>().SpawnBounce(FromPlayer);
+        Debug.Log("Item used to Bounce");
     }
 }

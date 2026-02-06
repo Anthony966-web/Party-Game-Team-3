@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7439067547665137658}
   - component: {fileID: 6186520718902425413}
+  - component: {fileID: 4579281130521465194}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -118,12 +119,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
+--- !u!95 &4579281130521465194
+Animator:
+  serializedVersion: 7
+=======
 --- !u!1 &676651548004379528
 GameObject:
+>>>>>>> ea10f79d1901d6b7768459c65f5610666757fb9e
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 290298023231295079}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9009dd5d3e33ef49913f37ce1875524, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+=======
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3268791553304975574}
@@ -193,6 +217,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+>>>>>>> ea10f79d1901d6b7768459c65f5610666757fb9e
 --- !u!1 &723149133381355814
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +545,9 @@ MonoBehaviour:
   DeathLayer:
     serializedVersion: 2
     m_Bits: 64
+<<<<<<< HEAD
+  animator: {fileID: 4579281130521465194}
+=======
   item: {fileID: 0}
   ItemIconHolder: {fileID: 6077872290024218128}
   IsStunned: 0
@@ -528,6 +556,7 @@ MonoBehaviour:
   JumpBoost: 0
   JumpBoostMultiplier: 2
   targetSpeed: 0
+>>>>>>> ea10f79d1901d6b7768459c65f5610666757fb9e
 --- !u!50 &5419042203230697766
 Rigidbody2D:
   serializedVersion: 5

@@ -1,15 +1,9 @@
-/*
-	Created by @DawnosaurDev at youtube.com/c/DawnosaurStudios
-	Thanks so much for checking this out and I hope you find it helpful! 
-	If you have any further queries, questions or feedback feel free to reach out on my twitter or leave a comment on youtube :D
 
-	Feel free to use this in your own games, and I'd love to see anything you make!
- */
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
@@ -98,26 +92,28 @@ public class PlayerMovement : MonoBehaviour
     [Header("Layers & Tags")]
 	[SerializeField] public LayerMask _groundLayer;
     [SerializeField] private LayerMask DeathLayer;
-	#endregion
+    #endregion
 
-	public Items item;
-	public Image ItemIconHolder;
-	private float Timer;
+    public Items item;
+    public Image ItemIconHolder;
+    private float Timer;
 
-	public bool IsStunned;
+    public bool IsStunned;
 
-	public bool SpeedBoost;
+    public bool SpeedBoost;
     public float speedBoostMultiplier = 2f;
 
     public bool JumpBoost;
-	public float JumpBoostMultiplier = 2f;
+    public float JumpBoostMultiplier = 2f;
 
-	public float targetSpeed;
+	public GameObject BounceGameObject;
+
+    public float targetSpeed;
 
     private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
-		anim = GetComponent<Animator>();
+		anim = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -195,30 +191,31 @@ public class PlayerMovement : MonoBehaviour
 
 		TimeTillAirControl -= Time.deltaTime;
 		LastMoveTime -= Time.deltaTime;
+		LastPressedJumpTime -= Time.deltaTime;
 		#endregion
 
 		#region INPUT HANDLER
         if (RB.linearVelocity.x > 0 && RB.linearVelocity.x < 6 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping || RB.linearVelocity.x < 0 && RB.linearVelocity.x > -6 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping)
 		{
-			anim.SetFloat("Walking", 1f);
-			anim.SetFloat("Running", 0f);
-			anim.SetFloat("Idleing", 0f);
+			//anim.SetFloat("Walking", 1f);
+			//anim.SetFloat("Running", 0f);
+			//anim.SetFloat("Idleing", 0f);
 		}
 
 		if (IsRunning && !IsJumping)
 		{
-			anim.SetFloat("Walking", 0f);
-			anim.SetFloat("Running", 1f);
-			anim.SetFloat("Idleing", 0f);
+			//anim.SetFloat("Walking", 0f);
+			//anim.SetFloat("Running", 1f);
+			//anim.SetFloat("Idleing", 0f);
 		}
 
 		if (RB.linearVelocity.x == 0 && Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) &&  !IsJumping)
 		{
 			IsWalking = false;
 			IsRunning = false;
-			anim.SetFloat("Idleing", 1f);
-			anim.SetFloat("Walking", 0f);
-			anim.SetFloat("Running", 0f);
+			//anim.SetFloat("Idleing", 1f);
+			//anim.SetFloat("Walking", 0f);
+			//anim.SetFloat("Running", 0f);
 		}
 		if (IsJumping || RB.linearVelocity.y != 0)
 		{
@@ -231,11 +228,20 @@ public class PlayerMovement : MonoBehaviour
 			IsWalking = false;
 		}
 
-        if (_moveInput.x == 1)
+        if (Mathf.Abs(RB.linearVelocityX) > 0.01f)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
+
+        if (_moveInput.x > 0)
         {
 			LastMoveInput = 1;
         }
-		else if (_moveInput.x == -1)
+		else if (_moveInput.x < 0)
 		{
 			LastMoveInput = -1;
 		}
@@ -248,28 +254,29 @@ public class PlayerMovement : MonoBehaviour
 			//Ground Check
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 				Jumped = false;
 				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
 			}
 
 			if (LastOnGroundTime >= Data.coyoteTime)
 			{
-				isGrounded = true;
+                
+                isGrounded = true;
 			}
 
 			if (!Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping && !Jumped) //checks if set box overlaps with ground
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 			}
 
 			//Front Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 				isOnRightWall = true;
 				isOnLeftWall = false;
-				LastOnWallRightTime = Data.coyoteTime;
+				LastOnWallRightTime = Data.wallJumpCoyoteTime;
 			}
 			else
 			{
@@ -279,10 +286,10 @@ public class PlayerMovement : MonoBehaviour
 			//Back Wall Check
 			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight) || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
 			{
-				anim.SetFloat("Jump", 0f);
+				//anim.SetFloat("Jump", 0f);
 				isOnRightWall = false;
 				isOnLeftWall = true;
-				LastOnWallLeftTime = Data.coyoteTime;
+				LastOnWallLeftTime = Data.wallJumpCoyoteTime;
 			}
 			else
 			{
@@ -291,6 +298,7 @@ public class PlayerMovement : MonoBehaviour
 
 			if (isGrounded)
 			{
+				//CheckDirectionToFace(_moveInput.x > 0);
 				IsFastFalling = false;
 			}
 
@@ -300,7 +308,8 @@ public class PlayerMovement : MonoBehaviour
 			if (groundhit)
 			{
 				RB.linearVelocityY = 0f;
-				Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
+                CheckDirectionToFace(LastMoveInput > 0);
+                Debug.DrawRay(groundhit.point, groundhit.normal, Color.red);
 			}
 
 			//Slam Into Wall Fix
@@ -333,6 +342,10 @@ public class PlayerMovement : MonoBehaviour
 			//Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
 			LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
 		}
+
+		anim.SetBool("isGrounded", isGrounded);
+	    anim.SetBool("isWallSliding",(isOnRightWall||isOnLeftWall) && RB.linearVelocityY<0);
+
 		#endregion
 
 		#region JUMP CHECKS
@@ -365,10 +378,10 @@ public class PlayerMovement : MonoBehaviour
 			//Jump
 			if (CanJump() && LastPressedJumpTime > 0)
 			{
-				anim.SetFloat("Walking", 0f);
-				anim.SetFloat("Running", 0f);
-				anim.SetFloat("Idleing", 0f);
-				anim.SetFloat("Jump", 1f);
+				//anim.SetFloat("Walking", 0f);
+				//anim.SetFloat("Running", 0f);
+				//anim.SetFloat("Idleing", 0f);
+				//anim.SetFloat("Jump", 1f);
 				IsJumping = true;
 				isGrounded = false;
 				IsWallJumping = false;
@@ -377,12 +390,12 @@ public class PlayerMovement : MonoBehaviour
 				Jump();
 			}
 			//WALL JUMP
-			else if (CanWallJump() && LastPressedJumpTime > 0)
+			else if (CanWallJump())
 			{
-				anim.SetFloat("Walking", 0f);
-				anim.SetFloat("Running", 0f);
-				anim.SetFloat("Idleing", 0f);
-				anim.SetFloat("Jump", 1f);
+				//anim.SetFloat("Walking", 0f);
+				//anim.SetFloat("Running", 0f);
+				//anim.SetFloat("Idleing", 0f);
+				//anim.SetFloat("Jump", 1f);
 				IsWallJumping = true;
 				IsJumping = false;
 				_isJumpCut = false;
@@ -398,9 +411,9 @@ public class PlayerMovement : MonoBehaviour
         #region SLIDE CHECKS
         if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
 		{
-			anim.SetFloat("Walking", 0f);
-			anim.SetFloat("Running", 0f);
-            anim.SetFloat("WallSliding", 1f);
+			//anim.SetFloat("Walking", 0f);
+			//anim.SetFloat("Running", 0f);
+            //anim.SetFloat("WallSliding", 1f);
 
 			isGrounded = false;
             IsFastSliding = false;
@@ -408,16 +421,16 @@ public class PlayerMovement : MonoBehaviour
         }
 		else
 		{
-            anim.SetFloat("WallSliding", 0f);
+            //anim.SetFloat("WallSliding", 0f);
 
             IsSliding = false;
         }
 
         if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x == 0) || (LastOnWallRightTime > 0 && _moveInput.x == 0)))
         {
-            anim.SetFloat("Walking", 0f);
-            anim.SetFloat("Running", 0f);
-            anim.SetFloat("WallSliding", 1f);
+            //anim.SetFloat("Walking", 0f);
+            //anim.SetFloat("Running", 0f);
+            //anim.SetFloat("WallSliding", 1f);
 
 			isGrounded = false;
             IsFastSliding = true;
@@ -473,85 +486,21 @@ public class PlayerMovement : MonoBehaviour
             //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds
             RB.linearVelocity = new Vector2(RB.linearVelocity.x, Mathf.Max(RB.linearVelocity.y, -Data.maxFastFallSpeed));
         }
-		#endregion
+        #endregion
 
-		if (item != null)
-		{
-            ItemIconHolder.enabled = true;
-            ItemIconHolder.sprite = item.Icon;
-        }
-		else
-		{
-            ItemIconHolder.enabled = false;
-            ItemIconHolder.sprite = null;
-        }
 
-		if (IsStunned == true)
-		{
-			_moveInput = Vector2.zero;
-			Timer += Time.deltaTime;
-			if (Timer >= 5f)
-			{
-				IsStunned = false;
-				Timer = 0f;
-            }
-        }
+        if (item != null) { ItemIconHolder.enabled = true; ItemIconHolder.sprite = item.Icon; } else { ItemIconHolder.enabled = false; ItemIconHolder.sprite = null; }
+        if (IsStunned == true) { _moveInput = Vector2.zero; Timer += Time.deltaTime; if (Timer >= 5f) { IsStunned = false; Timer = 0f; } }
+        if (SpeedBoost == true) { Timer += Time.deltaTime; if (Timer >= 5f) { SpeedBoost = false; Timer = 0f; } }
+        if (JumpBoost == true) { Timer += Time.deltaTime; if (Timer >= 5f) { JumpBoost = false; Timer = 0f; } }
 
-        if (SpeedBoost == true)
-        {
-            Timer += Time.deltaTime;
-            if (Timer >= 5f)
-            {
-				SpeedBoost = false;
-                Timer = 0f;
-            }
-        }
-
-        if (JumpBoost == true)
-        {
-            Timer += Time.deltaTime;
-            if (Timer >= 5f)
-            {
-                JumpBoost = false;
-                Timer = 0f;
-            }
-        }
     }
 
-    public void Attack(InputAction.CallbackContext ctx)
-    {
-		Debug.Log("Attack");
-
-        if (item == null) return;
-
-        Transform randomPlayer = GetRandomOtherPlayer();
-        if (randomPlayer == null) return;
-
-        item.UseItem(item, transform, randomPlayer);
-        item = null;
-    }
-
-    private Transform GetRandomOtherPlayer()
+	public void SpawnBounce(Transform player)
 	{
-		// Option 1: Find by tag
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-		List<GameObject> validTargets = new List<GameObject>();
-
-		foreach (GameObject player in players)
-		{
-			if (player != gameObject)
-			{
-				validTargets.Add(player);
-			}
-		}
-
-		if (validTargets.Count == 0)
-			return null;
-
-		int index = Random.Range(0, validTargets.Count);
-		return validTargets[index].transform;
-	}
+		GameObject Bounce = Instantiate(BounceGameObject, new Vector2(player.position.x, player.position.y - 2f), Quaternion.identity);
+		Destroy(Bounce, 10f);
+    }
 
     private void FixedUpdate()
 	{
@@ -591,7 +540,33 @@ public class PlayerMovement : MonoBehaviour
 
 	}
 
-	//Methods which whandle input detected in Update()
+    public void Attack(InputAction.CallbackContext ctx)
+	{ 
+		Debug.Log("Attack"); 
+		if (item == null) return; 
+		Transform randomPlayer = GetRandomOtherPlayer();
+		//if (randomPlayer == null) return; 
+		item.UseItem(item, transform, randomPlayer); 
+		item = null; 
+	}
+
+    private Transform GetRandomOtherPlayer()
+    { 
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player"); 
+		List<GameObject> validTargets = new List<GameObject>(); 
+		foreach (GameObject player in players) 
+		{ 
+			if (player != gameObject) 
+			{ 
+				validTargets.Add(player); 
+			} 
+		} 
+		if (validTargets.Count == 0) return null;
+		int index = Random.Range(0, validTargets.Count);
+		return validTargets[index].transform; 
+	}
+
+    //Methods which whandle input detected in Update()
     public void OnJumpInput(InputAction.CallbackContext ctx)
 	{
 		if (ctx.canceled)
@@ -602,7 +577,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (isGrounded || isOnLeftWall || isOnRightWall)
 		{
-			Debug.Log("Jump Input Received");
             LastPressedJumpTime = Data.jumpInputBufferTime;
         }
 	}
@@ -643,16 +617,19 @@ public class PlayerMovement : MonoBehaviour
     #region RUN METHODS
     private void Run(float lerpAmount)
 	{
-        //Calculate the direction we want to move in and our desired velocity
-		if (SpeedBoost == true)
+		if (_moveInput.x != 0)
 		{
-            targetSpeed = _moveInput.x * Data.runMaxSpeed * speedBoostMultiplier;
+            LastMoveTime = 0;
         }
-		else
-		{
-            targetSpeed = _moveInput.x * Data.runMaxSpeed;
+        //Calculate the direction we want to move in and our desired velocity
+        float maxSpeed = Data.runMaxSpeed;
+
+        if (SpeedBoost)
+        {
+            maxSpeed *= speedBoostMultiplier;
         }
 
+        float targetSpeed = _moveInput.x * maxSpeed;
         //We can reduce are control using Lerp() this smooths changes to are direction and speed
         targetSpeed = Mathf.Lerp(RB.linearVelocity.x, targetSpeed, lerpAmount);
 
@@ -746,7 +723,8 @@ public class PlayerMovement : MonoBehaviour
 		LastPressedJumpTime = 0;
 		LastOnGroundTime = 0;
 
-        anim.SetFloat("Jumping", 1f);
+        anim.SetTrigger("Jump");
+		Debug.Log("bug");
         #region Perform Jump
         //We increase the force applied if we are falling
         //This means we'll always feel like we jump the same amount 
@@ -756,21 +734,16 @@ public class PlayerMovement : MonoBehaviour
 		{
             force -= RB.linearVelocity.y;
         }
+
+        // Apply jump boost
+        if (JumpBoost)
+        {
+            force *= JumpBoostMultiplier;
+        }
+
         Jumped = true;
-        anim.SetFloat("Jumping", 1f);
 
-		Debug.Log("JUMP FORCE NORMAL: " + Vector2.up * force);
-        Debug.Log("JUMP FORCE MULTIPLIER: " + Vector2.up * force * JumpBoostMultiplier);
-
-        if (JumpBoost == true)
-		{
-            RB.AddForce(Vector2.up * force * JumpBoostMultiplier, ForceMode2D.Impulse);
-        }
-		else
-		{
-            RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        }
-        Debug.Log("BUUUUG");
+        RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         #endregion
     }
 
@@ -778,12 +751,12 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//Ensures we can't call Wall Jump multiple times from one press
 		LastPressedJumpTime = 0;
-		LastOnGroundTime = 0;
 		LastOnWallRightTime = 0.25f;
 		LastOnWallLeftTime = 0.25f;
+        anim.SetTrigger("Jump");
 
-		#region Perform Wall Jump
-		Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
+        #region Perform Wall Jump
+        Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
 		force.x *= dir; //apply force in opposite direction of wall
 
 		if (isOnLeftWall || isOnRightWall)
@@ -885,8 +858,14 @@ public class PlayerMovement : MonoBehaviour
 
 	private bool CanWallJump()
     {
-		return LastPressedJumpTime > 0 && LastOnWallTime > 0 && LastOnGroundTime <= 0 && (!IsWallJumping ||
-			 (LastOnWallRightTime > 0 && _lastWallJumpDir == 1) || (LastOnWallLeftTime > 0 && _lastWallJumpDir == -1));
+		return LastPressedJumpTime > 0 && LastOnWallTime > 0 && LastOnGroundTime <= 0 &&
+             (!IsWallJumping || (LastOnWallRightTime > 0) || (LastOnWallLeftTime > 0));
+	}
+
+	private void OnGUI()
+	{
+		GUI.Box(new Rect(0, 0, 100, 100), LastOnWallLeftTime > 0f ? Texture2D.whiteTexture : Texture2D.redTexture);
+		GUI.Box(new Rect(100, 0, 100, 100), LastOnWallRightTime > 0f ? Texture2D.whiteTexture : Texture2D.redTexture);
 	}
 
 	private bool CanJumpCut()
@@ -913,7 +892,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public bool CanTurn()
 	{
-		if (isGrounded || LastOnWallTime == Data.coyoteTime)
+		if (isGrounded || LastOnWallTime == Data.wallJumpCoyoteTime)
 		{
 			return true;
 		}
@@ -929,10 +908,10 @@ public class PlayerMovement : MonoBehaviour
         if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, DeathLayer))
         {
             IsDead = true;
-            anim.SetFloat("Jump", 0f);
-            anim.SetFloat("Walking", 0f);
-            anim.SetFloat("Running", 0f);
-            anim.SetFloat("Idleing", 0f);
+            //anim.SetFloat("Jump", 0f);
+            //anim.SetFloat("Walking", 0f);
+            //anim.SetFloat("Running", 0f);
+            //anim.SetFloat("Idleing", 0f);
         }
     }
 

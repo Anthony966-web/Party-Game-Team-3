@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tyler/PlayerTestScene.unity
     guid: fa3831696e829594eb5d20afc897b9b0
+  - enabled: 1
+    path: Assets/Anthony/PlayerTestScene 1.unity
+    guid: 2c3b58b4d84119f47bba7d7bdeb899fa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
