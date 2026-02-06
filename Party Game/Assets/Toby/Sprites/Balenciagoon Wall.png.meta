@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0000d6a0bff56f4ab3aeaa1ed740ac1
+guid: 33d157e483f637b4f846159f51e6a7ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9012917843099916589
-    second: Snowseph Wall_0
+      213: 100697352640423326
+    second: Balenciagoon Wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snowseph Wall_0
+      name: Balenciagoon Wall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d6ef3469feabe280800000000000000
-      internalID: -9012917843099916589
+      spriteID: e9564fd65bfb56100800000000000000
+      internalID: 100697352640423326
       vertices: []
       indices: 
       edges: []
