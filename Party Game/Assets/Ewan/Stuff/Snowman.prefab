@@ -507,7 +507,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1074846796533374195
 CapsuleCollider2D:
@@ -832,6 +832,7 @@ MonoBehaviour:
   Sprite: {fileID: 0}
   playerSprites: []
   PlayersAnimatorController: []
+  IsPaused: 0
 --- !u!1 &9223035008845539754
 GameObject:
   m_ObjectHideFlags: 0
