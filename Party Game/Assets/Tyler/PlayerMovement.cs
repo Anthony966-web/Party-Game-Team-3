@@ -866,11 +866,6 @@ public class PlayerMovement : MonoBehaviour
              (!IsWallJumping || (LastOnWallRightTime > 0) || (LastOnWallLeftTime > 0));
 	}
 
-	private void OnGUI()
-	{
-		GUI.Box(new Rect(0, 0, 100, 100), LastOnWallLeftTime > 0f ? Texture2D.whiteTexture : Texture2D.redTexture);
-		GUI.Box(new Rect(100, 0, 100, 100), LastOnWallRightTime > 0f ? Texture2D.whiteTexture : Texture2D.redTexture);
-	}
 
 	private bool CanJumpCut()
     {
