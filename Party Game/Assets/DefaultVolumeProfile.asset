@@ -269,7 +269,7 @@ MonoBehaviour:
     m_Value: 0
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -22
   greenOutRedIn:
     m_OverrideState: 1
     m_Value: 0
@@ -521,13 +521,13 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.93576914, y: 1, z: 0.9918698, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 0.8692447, z: 0.9471617, w: 0}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.99891335, y: 0.98101765, z: 1, w: 0}
 --- !u!114 &1247868777620691934
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -603,7 +603,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.12
   xMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -650,7 +650,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.167
 --- !u!114 &5762530381802164056
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -696,10 +696,10 @@ MonoBehaviour:
     m_Value: 1
   startingPosition:
     m_OverrideState: 1
-    m_Value: 1.25
+    m_Value: 1
   scale:
     m_OverrideState: 1
-    m_Value: 1.5
+    m_Value: 1
   streaksIntensity:
     m_OverrideState: 1
     m_Value: 0
@@ -717,7 +717,7 @@ MonoBehaviour:
     m_Value: 4
   chromaticAbberationIntensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.463
 --- !u!114 &7933203426823181213
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -767,10 +767,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.426
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.187
   rounded:
     m_OverrideState: 1
     m_Value: 0
@@ -789,7 +789,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.031
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
