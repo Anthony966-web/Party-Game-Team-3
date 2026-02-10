@@ -28,24 +28,21 @@ public class HightTracker : MonoBehaviour
 
         // find all players in scene
         PlayerInput[] players = GameObject.FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
-        float[] heights = new float[players.Length];
 
         for (int i = 0; i < players.Length; i++)
         {
-            // find hight for p1
-            heights[i] = Mathf.InverseLerp(start, finish, players[i].transform.position.y);
-            // sets slider to hight in level for p1
-            playerSliderHight[i].value = heights[i];
+            // sets slider to hight in level for each player
+            playerSliderHight[i].value = Mathf.InverseLerp(start, finish, players[i].transform.position.y);
         }
 
         // Create an array with each of the heights, then sort it biggest to smallest
-        float[] orderedHeights = heights.OrderBy(h => -h).ToArray();
+        var orderedHeights = playerSliderHight.OrderBy(h => -h.value).ToArray();
 
         // sets crowns to players hight on slider
         if (orderedHeights.Length > 0)
         {
-            winnerCrown.value = orderedHeights[0]; // 0 is first in array.
-            loserCrown.value = orderedHeights[^1]; // ^1 is last in array.
+            winnerCrown.value = orderedHeights[0].value; // 0 is first in array.
+            loserCrown.value = orderedHeights[^1].value; // ^1 is last in array.
         }
     }
 
