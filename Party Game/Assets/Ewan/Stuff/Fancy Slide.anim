@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Climber Slide
+  m_Name: Fancy Slide
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -2762066416221659055, guid: 31ecd8edb8d8de742b6309bc22dd6475, type: 3}
+      value: {fileID: 100697352640423326, guid: 33d157e483f637b4f846159f51e6a7ff, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -2762066416221659055, guid: 31ecd8edb8d8de742b6309bc22dd6475, type: 3}
+    - {fileID: 100697352640423326, guid: 33d157e483f637b4f846159f51e6a7ff, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
