@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Anti_Jump_Shoe_0: 1512991125006487354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
