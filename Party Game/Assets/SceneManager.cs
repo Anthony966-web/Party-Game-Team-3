@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
-    [SerializeField] Animator transitionAnim;
 
 
     private void Awake()
@@ -27,10 +26,8 @@ public class SceneController : MonoBehaviour
 
     IEnumerator LoadLevel()
     {
-        transitionAnim.SetTrigger("End");
         yield return new WaitForSeconds(1);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        transitionAnim.SetTrigger("Start");
     }
 
 }
