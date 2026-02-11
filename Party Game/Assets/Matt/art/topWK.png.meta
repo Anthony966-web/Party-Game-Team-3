@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f64b043cfa8bc7b49a53db5df11e1195
+guid: 6143b1f14b4917647817242a2507ae39
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7534934852089752246
-    second: Climb_0
+      213: -7823868950450675217
+    second: topWK_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,37 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Climb_0
+      name: topWK_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ba25808357719860800000000000000
-      internalID: 7534934852089752246
+      spriteID: fe1ed2764a80c6390800000000000000
+      internalID: -7823868950450675217
       vertices: []
       indices: 
       edges: []
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Climb_0: 7534934852089752246
+      topWK_0: -7823868950450675217
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

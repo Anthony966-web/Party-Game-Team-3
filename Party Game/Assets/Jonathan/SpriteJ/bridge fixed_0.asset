@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: BottomWK_0
+  m_Name: bridge fixed_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 6933741244381248047, guid: a25f1df7c40afd94aa3db04b6c6656a0, type: 3}
+  m_Sprite: {fileID: 8466783492668374786, guid: 1c0d7eb6f0ec4ef4bb657fd7b6f532d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
