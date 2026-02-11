@@ -17,4 +17,5 @@ MonoBehaviour:
   ItemName: Teleport
   SoundGameObject: {fileID: 2781669980117088999, guid: 3e25c9534ac4e68499cfbe9597b84e6c, type: 3}
   StunSound: {fileID: 0}
+  TeleportSound: {fileID: 8300000, guid: 59ed92652d7eed94a82d2598d8cdccb9, type: 3}
   description: Teleport
