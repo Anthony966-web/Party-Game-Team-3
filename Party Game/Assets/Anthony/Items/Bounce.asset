@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Bounce
   m_EditorClassIdentifier: 
   Icon: {fileID: -3466282102808411590, guid: d55072fbbe7b15a44922eb5062aeb6d3, type: 3}
+  RandomSprite: {fileID: 408945501580029147, guid: 4e93319c2ad6c7e4ca775ebe4624e9fc, type: 3}
   ItemName: Bounce
+  SoundGameObject: {fileID: 2781669980117088999, guid: 3e25c9534ac4e68499cfbe9597b84e6c, type: 3}
+  StunSound: {fileID: 0}
   description: Bounce The Player

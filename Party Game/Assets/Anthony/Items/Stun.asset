@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864c3327417dd13439c2ec057e2dc11a, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 8ce6846b811f9d14697a76dd67f6f069, type: 3}
+  Icon: {fileID: -5983569269223943449, guid: 8ce6846b811f9d14697a76dd67f6f069, type: 3}
+  RandomSprite: {fileID: 408945501580029147, guid: 4e93319c2ad6c7e4ca775ebe4624e9fc, type: 3}
   ItemName: Stun
+  SoundGameObject: {fileID: 2781669980117088999, guid: 3e25c9534ac4e68499cfbe9597b84e6c, type: 3}
+  StunSound: {fileID: 8300000, guid: c980c23235a9256499837a9604c0391f, type: 3}
   description: Stun The Player Above You

@@ -5,7 +5,13 @@ using UnityEngine.UI;
 public class Items : ScriptableObject
 {
     public Sprite Icon;
+    public Sprite RandomSprite;
     public string ItemName;
+
+    public GameObject SoundGameObject;
+
+    public AudioClip StunSound;
+
     [TextArea(4, 4)] public string description;
 
     public void UseItem(Items item, Transform FromPlayer, Transform RandomPlayer) // Get What player Sent This So You Can Remove It From Players Inventory And To Give Effects And Get The A Random Player That Is Not The Same Person As The Player Sending It
@@ -50,6 +56,34 @@ public class Items : ScriptableObject
     public void Stun(Transform RandomPlayer)
     {
         RandomPlayer.GetComponent<PlayerMovement>().IsStunned = true;
+
+        // Instantiate the sound GameObject at the player's position
+        GameObject instance = Instantiate(SoundGameObject, RandomPlayer.position, Quaternion.identity);
+
+        AudioSource source = instance.GetComponent<AudioSource>();
+        if (source != null)
+        {
+            if (StunSound != null)
+            {
+                // Option A: play the clip and destroy the object after the clip finishes
+                source.PlayOneShot(StunSound);
+                Destroy(instance, StunSound.length + 0.1f);
+            }
+            else
+            {
+                // No clip assigned: try to play any assigned clip on the AudioSource, else destroy after default
+                if (source.clip != null)
+                {
+                    source.Play();
+                    Destroy(instance, source.clip.length + 0.1f);
+                }
+                else
+                {
+                    Debug.LogWarning("No StunSound and AudioSource.clip is null. Destroying instance after 2 seconds.");
+                    Destroy(instance, 2f);
+                }
+            }
+        }
         Debug.Log("Item used to stun an enemy!");
     }
 
