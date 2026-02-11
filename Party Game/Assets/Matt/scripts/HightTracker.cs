@@ -7,8 +7,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
-
-
 public class HightTracker : MonoBehaviour
 {
     [Header("players on slider")]

@@ -11,6 +11,7 @@ public class Items : ScriptableObject
     public GameObject SoundGameObject;
 
     public AudioClip StunSound;
+    public AudioClip TeleportSound;
 
     [TextArea(4, 4)] public string description;
 
@@ -57,33 +58,7 @@ public class Items : ScriptableObject
     {
         RandomPlayer.GetComponent<PlayerMovement>().IsStunned = true;
 
-        // Instantiate the sound GameObject at the player's position
-        GameObject instance = Instantiate(SoundGameObject, RandomPlayer.position, Quaternion.identity);
-
-        AudioSource source = instance.GetComponent<AudioSource>();
-        if (source != null)
-        {
-            if (StunSound != null)
-            {
-                // Option A: play the clip and destroy the object after the clip finishes
-                source.PlayOneShot(StunSound);
-                Destroy(instance, StunSound.length + 0.1f);
-            }
-            else
-            {
-                // No clip assigned: try to play any assigned clip on the AudioSource, else destroy after default
-                if (source.clip != null)
-                {
-                    source.Play();
-                    Destroy(instance, source.clip.length + 0.1f);
-                }
-                else
-                {
-                    Debug.LogWarning("No StunSound and AudioSource.clip is null. Destroying instance after 2 seconds.");
-                    Destroy(instance, 2f);
-                }
-            }
-        }
+        AddSound(StunSound, RandomPlayer);
         Debug.Log("Item used to stun an enemy!");
     }
 
@@ -102,6 +77,7 @@ public class Items : ScriptableObject
     public void Teleport(Transform FromPlayer, Transform RandomPlayer)
     {
         FromPlayer.transform.position = RandomPlayer.transform.position + new Vector3(2, 0, 0); // Teleport Next To The Random Player
+        AddSound(TeleportSound, RandomPlayer);
         Debug.Log("Item used to teleport to: " + RandomPlayer.transform.name);
     }
 
@@ -109,5 +85,36 @@ public class Items : ScriptableObject
     {
         FromPlayer.GetComponent<PlayerMovement>().SpawnBounce(FromPlayer);
         Debug.Log("Item used to Bounce");
+    }
+
+    public void AddSound(AudioClip sound, Transform player)
+    {
+        // Instantiate the sound GameObject at the player's position
+        GameObject instance = Instantiate(SoundGameObject, player.position, Quaternion.identity);
+
+        AudioSource source = instance.GetComponent<AudioSource>();
+        if (source != null)
+        {
+            if (sound != null)
+            {
+                // Option A: play the clip and destroy the object after the clip finishes
+                source.PlayOneShot(sound);
+                Destroy(instance, sound.length + 0.1f);
+            }
+            else
+            {
+                // No clip assigned: try to play any assigned clip on the AudioSource, else destroy after default
+                if (source.clip != null)
+                {
+                    source.Play();
+                    Destroy(instance, source.clip.length + 0.1f);
+                }
+                else
+                {
+                    Debug.LogWarning("No StunSound and AudioSource.clip is null. Destroying instance after 2 seconds.");
+                    Destroy(instance, 2f);
+                }
+            }
+        }
     }
 }
