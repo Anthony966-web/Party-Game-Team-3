@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject HelpPanel;
+
     public void Playgame()
     {
-        SceneManager.LoadScene("PlayerTestScene 1");
+        SceneManager.LoadScene("Level 1");
+        HelpPanel.SetActive(true);
     }
 
     public void PlayCredits()

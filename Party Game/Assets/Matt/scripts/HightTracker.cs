@@ -9,38 +9,43 @@ using System.Linq;
 
 public class HightTracker : MonoBehaviour
 {
-    [Header("players on slider")]
-    // slider on side for player
     public Slider[] playerSliderHight;
-
-    [Header("crowns")]
-// crowns for players
     public Slider winnerCrown;
     public Slider loserCrown;
 
+    private Transform startTransform;
+    private Transform finishTransform;
+
+    void Start()
+    {
+        startTransform = GameObject.Find("start").transform;
+        finishTransform = GameObject.Find("finish").transform;
+    }
+
     void Update()
     {
-        //start and finish hight things
-        float start = GameObject.Find("start").transform.position.y;
-        float finish = GameObject.Find("finish").transform.position.y;
+        float start = startTransform.position.y;
+        float finish = finishTransform.position.y;
 
-        // find all players in scene
-        PlayerInput[] players = GameObject.FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
+        PlayerInput[] players = GameObject
+            .FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
+            .OrderBy(p => p.playerIndex)
+            .ToArray();
 
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Length && i < playerSliderHight.Length; i++)
         {
-            // sets slider to hight in level for each player
-            playerSliderHight[i].value = Mathf.InverseLerp(start, finish, players[i].transform.position.y);
+            playerSliderHight[i].value =
+                Mathf.InverseLerp(start, finish, players[i].transform.position.y);
         }
 
-        // Create an array with each of the heights, then sort it biggest to smallest
-        var orderedHeights = playerSliderHight.OrderBy(h => -h.value).ToArray();
+        var orderedHeights = playerSliderHight
+            .OrderByDescending(h => h.value)
+            .ToArray();
 
-        // sets crowns to players hight on slider
         if (orderedHeights.Length > 0)
         {
-            winnerCrown.value = orderedHeights[0].value; // 0 is first in array.
-            loserCrown.value = orderedHeights[^1].value; // ^1 is last in array.
+            winnerCrown.value = orderedHeights[0].value;
+            loserCrown.value = orderedHeights[^1].value;
         }
     }
 
