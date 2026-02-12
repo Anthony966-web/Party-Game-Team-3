@@ -259,13 +259,9 @@ public class PlayerMovement : MonoBehaviour
 				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
 			}
 
-			if (LastOnGroundTime >= Data.coyoteTime)
-			{
-                
-                isGrounded = true;
-			}
+            isGrounded = LastOnGroundTime > 0;
 
-			if (!Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping && !Jumped) //checks if set box overlaps with ground
+            if (!Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping && !Jumped) //checks if set box overlaps with ground
 			{
 				//anim.SetFloat("Jump", 0f);
 			}
@@ -569,17 +565,16 @@ public class PlayerMovement : MonoBehaviour
     //Methods which whandle input detected in Update()
     public void OnJumpInput(InputAction.CallbackContext ctx)
 	{
-		if (ctx.canceled)
-		{
-			OnJumpUpInput();
-			return;
-		}
-
-		if (isGrounded || isOnLeftWall || isOnRightWall)
-		{
+        if (ctx.performed)
+        {
             LastPressedJumpTime = Data.jumpInputBufferTime;
         }
-	}
+
+        if (ctx.canceled)
+        {
+            OnJumpUpInput();
+        }
+    }
 
 	public void OnJumpUpInput()
 	{
