@@ -3,14 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject HelpPanel;
+
     public void Playgame()
     {
-        SceneManager.LoadScene("PlayerTestScene 1");
-    }
-
-    public void PlayCredits()
-    {
-        SceneManager.LoadScene("Credits");
+        SceneManager.LoadScene("Level 1");
+        HelpPanel.SetActive(true);
     }
 
     public void QuitGame()

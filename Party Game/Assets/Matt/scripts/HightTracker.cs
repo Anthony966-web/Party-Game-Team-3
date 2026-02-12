@@ -7,45 +7,45 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
-
-
 public class HightTracker : MonoBehaviour
 {
-    [Header("players on slider")]
-    // slider on side for player
     public Slider[] playerSliderHight;
-
-    [Header("crowns")]
-// crowns for players
     public Slider winnerCrown;
     public Slider loserCrown;
 
+    private Transform startTransform;
+    private Transform finishTransform;
+
+    void Start()
+    {
+        startTransform = GameObject.Find("start").transform;
+        finishTransform = GameObject.Find("finish").transform;
+    }
+
     void Update()
     {
-        //start and finish hight things
-        float start = GameObject.Find("start").transform.position.y;
-        float finish = GameObject.Find("finish").transform.position.y;
+        float start = startTransform.position.y;
+        float finish = finishTransform.position.y;
 
-        // find all players in scene
-        PlayerInput[] players = GameObject.FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
-        float[] heights = new float[players.Length];
+        PlayerInput[] players = GameObject
+            .FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
+            .OrderBy(p => p.playerIndex)
+            .ToArray();
 
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Length && i < playerSliderHight.Length; i++)
         {
-            // find hight for p1
-            heights[i] = Mathf.InverseLerp(start, finish, players[i].transform.position.y);
-            // sets slider to hight in level for p1
-            playerSliderHight[i].value = heights[i];
+            playerSliderHight[i].value =
+                Mathf.InverseLerp(start, finish, players[i].transform.position.y);
         }
 
-        // Create an array with each of the heights, then sort it biggest to smallest
-        float[] orderedHeights = heights.OrderBy(h => -h).ToArray();
+        var orderedHeights = playerSliderHight
+            .OrderByDescending(h => h.value)
+            .ToArray();
 
-        // sets crowns to players hight on slider
         if (orderedHeights.Length > 0)
         {
-            winnerCrown.value = orderedHeights[0]; // 0 is first in array.
-            loserCrown.value = orderedHeights[^1]; // ^1 is last in array.
+            winnerCrown.value = orderedHeights[0].value;
+            loserCrown.value = orderedHeights[^1].value;
         }
     }
 

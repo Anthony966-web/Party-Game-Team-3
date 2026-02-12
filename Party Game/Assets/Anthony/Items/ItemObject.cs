@@ -14,7 +14,7 @@ public class ItemObject : MonoBehaviour
     {
         if (item != null)
         {
-            GetComponent<SpriteRenderer>().sprite = item.Icon;
+            GetComponent<SpriteRenderer>().sprite = item.RandomSprite;
         }
     }
 

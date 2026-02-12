@@ -9,17 +9,24 @@ EditorBuildSettings:
     path: Assets/Matt/scenes/title screne.unity
     guid: 9bb594e5c6882cb47852bfe348e4fcee
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Jonathan/Level 1.unity
+    guid: e53b9afa431aa07428ebe40be9c8fb87
   - enabled: 1
-    path: Assets/Matt/scenes/credits.unity
-    guid: 093d49d902e3e2f48b7505ff67f7c032
-  - enabled: 1
+    path: Assets/Toby/YOU WIN.unity
+    guid: 1b2ac3acd1de3514b8b66ed27e05ed74
+  - enabled: 0
     path: Assets/Tyler/PlayerTestScene.unity
     guid: fa3831696e829594eb5d20afc897b9b0
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 0
     path: Assets/Anthony/PlayerTestScene 1.unity
     guid: 2c3b58b4d84119f47bba7d7bdeb899fa
+  - enabled: 0
+    path: Assets/Matt/scenes/credits.unity
+    guid: 093d49d902e3e2f48b7505ff67f7c032
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 185e401d8b070f84ebf6da6e4cdc0392, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
